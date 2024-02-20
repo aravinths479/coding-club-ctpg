@@ -18,6 +18,10 @@ AdminBro.registerAdapter(AdminBroMongoose);
 const admin = new AdminBro({
   resources: [Student,Faculty],
   rootPath: '/admin',
+  branding: {
+    companyName: 'Coding Club Database Adminstration',
+    softwareBrothers: false, // Remove AdminBro branding
+  },
 });
 
 const router = AdminBroExpress.buildRouter(admin);

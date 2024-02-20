@@ -50,32 +50,35 @@ app.use(function (req, res, next) {
   next();
 });
 
-const AdminBro = require('admin-bro');
-const AdminBroMongoose = require('admin-bro-mongoose');
-const AdminBroExpress = require('@admin-bro/express');
+const AdminBro = require("admin-bro");
+const AdminBroMongoose = require("admin-bro-mongoose");
+const AdminBroExpress = require("@admin-bro/express");
 
-
-
-const Student = require("./models/Student")
-const Faculty = require('./models/Faculty')
-
+const Student = require("./models/Student");
+const Faculty = require("./models/Faculty");
+const Event = require("./models/Event.js");
+const RegisteredUsers = require("./models/RegisteredUsers.js");
 
 AdminBro.registerAdapter(AdminBroMongoose);
 
-
 const admin = new AdminBro({
-  resources: [Student,Faculty],
-  rootPath: '/admin',
+  resources: [Student, Faculty, Event, RegisteredUsers],
+  rootPath: "/admin",
 });
 
 const router = AdminBroExpress.buildRouter(admin);
 
+// node database adminstartion
 app.use(admin.options.rootPath, router);
 
-// Routes
 app.use("/", require("./routes/index.js"));
 app.use("/users", require("./routes/users.js"));
+app.use("/event", require("./routes/event.js"));
 
-const PORT = process.env.PORT || 5000;
+// process.on('warning', (warning) => {
+//   console.log(warning.stack);
+// });
+
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, console.log(`Server running on  ${PORT}`));

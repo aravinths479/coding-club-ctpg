@@ -1,0 +1,35 @@
+<%- include('partials/facultyNavbar') %>
+
+
+
+<h2>Listing users</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Name</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.forEach(user => { %>
+    <tr>
+      <td><%= user.email %></td>
+      <td><%= user.name %></td>
+      <td>
+        <!-- Form to submit user removal -->
+        <form action="/users/remove-user/<%= user._id %>" method="POST">
+          <button type="submit">Remove</button>
+        </form>
+      </td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+<style>
+  th,
+  td {
+    border: 1px solid black;
+  }
+</style>

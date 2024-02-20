@@ -1,0 +1,199 @@
+<%- include('partials/facultyNavbar') %>
+
+<h3>First year</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Year</th>
+      <th>Roll Number</th>
+      <th>Phone Number</th>
+      <th>Leetcode Id</th>
+      <th>GitHub</th>
+      <th>View Photo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% firstYear.forEach(item => { %>
+    <tr>
+      <td><%= item.name %></td>
+      <td><%= item.email %></td>
+      <td><%= item.year %></td>
+      <td><%= item.rollNumber %></td>
+      <td><%= item.phoneNumber %></td>
+      <td><%= item.leetcodeId %></td>
+      <td><%= item.gitHub %></td>
+      <td>
+        <a
+          href="https://results.kongu.edu/Photos/<%= item.rollNumber %>.jpg"
+          target="_blank"
+          >Click to View the Photo</a
+        >
+      </td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+<br /><br />
+
+<h3>Second year</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Year</th>
+      <th>Roll Number</th>
+      <th>Phone Number</th>
+      <th>Leetcode Id</th>
+      <th>GitHub</th>
+      <th>View Photo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% secondYear.forEach(item => { %>
+    <tr>
+      <td><%= item.name %></td>
+      <td><%= item.email %></td>
+      <td><%= item.year %></td>
+      <td><%= item.rollNumber %></td>
+      <td><%= item.phoneNumber %></td>
+      <td><%= item.leetcodeId %></td>
+      <td><%= item.gitHub %></td>
+      <td>
+        <a
+          href="https://results.kongu.edu/Photos/<%= item.rollNumber %>.jpg"
+          target="_blank"
+          >Click to View the Photo</a
+        >
+      </td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+<br /><br />
+
+<h3>Third year</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Year</th>
+      <th>Roll Number</th>
+      <th>Phone Number</th>
+      <th>Leetcode Id</th>
+      <th>GitHub</th>
+      <th>View Photo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% thirdYear.forEach(item => { %>
+    <tr>
+      <td><%= item.name %></td>
+      <td><%= item.email %></td>
+      <td><%= item.year %></td>
+      <td><%= item.rollNumber %></td>
+      <td><%= item.phoneNumber %></td>
+      <td><%= item.leetcodeId %></td>
+      <td><%= item.gitHub %></td>
+      <td>
+        <a href="https://results.kongu.edu/Photos/<%= item.rollNumber %>.JPG"
+          >Click to View the Photo</a
+        >
+      </td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+<br /><br />
+
+<h3>Fourth year</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Year</th>
+      <th>Roll Number</th>
+      <th>Phone Number</th>
+      <th>Leetcode Id</th>
+      <th>GitHub</th>
+      <th>View Photo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% fourthYear.forEach(item => { %>
+    <tr>
+      <td><%= item.name %></td>
+      <td><%= item.email %></td>
+      <td><%= item.year %></td>
+      <td><%= item.rollNumber %></td>
+      <td><%= item.phoneNumber %></td>
+      <td><%= item.leetcodeId %></td>
+      <td><%= item.gitHub %></td>
+      <td>
+        <a href="https://results.kongu.edu/Photos/<%= item.rollNumber %>.JPG"
+          >Click to View the Photo</a
+        >
+      </td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+<br /><br />
+
+<h3>Fifth year</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Year</th>
+      <th>Roll Number</th>
+      <th>Phone Number</th>
+      <th>Leetcode Id</th>
+      <th>GitHub</th>
+      <th>View Photo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% fifthYear.forEach(item => { %>
+    <tr>
+      <td><%= item.name %></td>
+      <td><%= item.email %></td>
+      <td><%= item.year %></td>
+      <td><%= item.rollNumber %></td>
+      <td><%= item.phoneNumber %></td>
+      <td><%= item.leetcodeId %></td>
+      <td><%= item.gitHub %></td>
+      <td>
+        <a
+          href="https://results.kongu.edu/Photos/<%= item.rollNumber %>.jpg"
+          target="_blank"
+          >Click to View the Photo</a
+        >
+      </td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+<br /><br />
+
+<style>
+  th,
+  td {
+    border: 1px solid black;
+  }
+</style>

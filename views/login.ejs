@@ -1,10 +1,12 @@
 <div class="row mt-5">
   <div class="col-md-6 m-auto">
     <div class="card card-body">
-      <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i> Login Student</h1>
+      <h1 class="text-center mb-3">
+        <i class="fas fa-sign-in-alt"></i> Login Student
+      </h1>
       <%- include ("./partials/messages"); %>
       <form action="/users/login/student" method="POST">
-        <input type="hidden" name="role" value="student">
+        <input type="hidden" name="role" value="student" />
         <div class="form-group">
           <label for="email">Email</label>
           <input
@@ -21,6 +23,7 @@
             type="password"
             id="password"
             name="password"
+            value="Aravinth#1"
             class="form-control"
             placeholder="Enter Password"
           />
@@ -34,15 +37,15 @@
   </div>
 </div>
 
-
-
 <div class="row mt-5">
   <div class="col-md-6 m-auto">
     <div class="card card-body">
-      <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i> Login Faculty</h1>
+      <h1 class="text-center mb-3">
+        <i class="fas fa-sign-in-alt"></i> Login Faculty
+      </h1>
       <%- include ("./partials/messages"); %>
       <form action="/users/login/faculty" method="POST">
-          <input type="hidden" name="role" value="faculty">
+        <input type="hidden" name="role" value="faculty" />
         <div class="form-group">
           <label for="email">Email</label>
           <input
@@ -59,6 +62,7 @@
             type="password"
             id="password"
             name="password"
+            value="Aravinth#1"
             class="form-control"
             placeholder="Enter Password"
           />

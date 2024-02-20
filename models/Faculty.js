@@ -1,25 +1,29 @@
 // models/User.js
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const FacultySchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   email: {
     type: String,
-    required: true
+    required: true,
   },
   password: {
     type: String,
-    required: true
+    required: false,
+  },
+  isFaculty: {
+    type: Boolean,
+    default: true,
   },
   date: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
-const Faculty = mongoose.model('Faculty', FacultySchema);
+const Faculty = mongoose.model("Faculty", FacultySchema);
 
 module.exports = Faculty;

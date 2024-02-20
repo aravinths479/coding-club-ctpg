@@ -1,7 +1,7 @@
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
 
-// Load Student and Faculty models
+
 const Student = require("../models/Student");
 const Faculty = require("../models/Faculty");
 

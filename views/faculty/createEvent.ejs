@@ -1,0 +1,43 @@
+<%- include('partials/facultyNavbar') %>
+
+<h1>create event</h1>
+<%- include ("./partials/messages"); %>
+
+<form action="/event/create-event" method="post">
+  <label for="">Title</label>
+  <input type="text" name="title" />
+  <br />
+  <label for="">description</label>
+  <textarea name="description" cols="30" rows="10"></textarea>
+  <br />
+  <label for="">Team</label>
+  <input type="checkbox" name="team" />
+  <br />
+  <label for="">minSize</label>
+  <input type="number" name="teamMinSize" />
+  <br />
+  <label for="">maxsize</label>
+  <input type="number" name="teamMaxSize" />
+  <br />
+  <label for="">Start Date</label>
+  <input type="date" name="eventStartDate" />
+  <br />
+  <label for="">End date</label>
+  <input type="date" name="eventEndDate" />
+  <br />
+  <label for="">posters</label>
+  <input type="file" name="posters" multiple />
+  <br />
+  <label for="">documents</label>
+  <input type="file" name="documents" />
+  <br />
+  <label for="">Contact</label>
+  <input type="text" name="contact" />
+  <br />
+  <label for="">Allow Submission Responses</label>
+  <input type="checkbox" name="allowResponse" />
+  <br />
+  <button type="submit">Submit</button>
+</form>
+
+<br /><br />

@@ -6,7 +6,12 @@ const passport = require("passport");
 // Load User models
 const Student = require("../models/Student");
 const Faculty = require("../models/Faculty");
-const { forwardAuthenticated } = require("../config/auth");
+
+const {
+  forwardAuthenticated,
+  ensureAuthenticated,
+  isFaculty,
+} = require("../config/auth");
 
 // Login Page
 router.get("/login", forwardAuthenticated, (req, res) => res.render("login"));
@@ -86,17 +91,104 @@ router.post("/register", (req, res) => {
 router.post("/login/:role", (req, res, next) => {
   if (req.params.role == "student") {
     passport.authenticate("student", {
-      successRedirect: "/dashboard",
+      successRedirect: "/studentDashboard",
       failureRedirect: "/users/login",
       failureFlash: true,
     })(req, res, next);
-  } 
-  if (req.params.role == "faculty")  {
+  }
+  if (req.params.role == "faculty") {
     passport.authenticate("faculty", {
-      successRedirect: "/dashboard",
+      successRedirect: "/facultyDashboard",
       failureRedirect: "/users/login",
       failureFlash: true,
     })(req, res, next);
+  }
+});
+
+router.get(
+  "/get-all-users",
+  ensureAuthenticated,
+  isFaculty,
+  async (req, res) => {
+    try {
+      const Users = await Faculty.find({});
+      console.log(Users);
+      return res.render("faculty/ListAdminUsers", { user: req.user, users: Users });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
+
+router.get("/add-user-by-admin", ensureAuthenticated, isFaculty, (req, res) => {
+  return res.render("faculty/addUser", { user: req.user });
+});
+
+router.post(
+  "/add-user-by-admin",
+  ensureAuthenticated,
+  isFaculty,
+  async (req, res) => {
+    try {
+      console.log(req.body);
+      const isFacultyAlreadyExists = await Faculty.find({
+        email: req.body.email,
+      });
+      console.log(isFacultyAlreadyExists);
+      if (isFacultyAlreadyExists.length != 0) {
+        req.flash("error_msg", "User Already Exists");
+        return res.redirect("/users/add-user-by-admin");
+      } else {
+        const facultyCreate = await Faculty.create({
+          name: req.body.name,
+          email: req.body.email,
+        });
+        console.log(facultyCreate);
+        req.flash("success_msg", "New User Added With Admin Level Permissions");
+        return res.redirect("/users/add-user-by-admin");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
+
+router.post(
+  "/remove-user/:id",
+  ensureAuthenticated,
+  isFaculty,
+  async (req, res) => {
+    try {
+      const id = req.params.id;
+      await Faculty.deleteOne({ _id: id });
+      req.flash("success_msg", "User Deleted Sucessfully");
+      return res.redirect("/users/get-all-users");
+    } catch (err) {
+      console.log(err);
+      req.flash("error_msg", "Action Failed");
+      return res.redirect("/users/get-all-users");
+    }
+  }
+);
+
+router.get("/get-students", ensureAuthenticated, isFaculty, async (req, res) => {
+  try {
+    const firstYear = await Student.find({ year: 1 });
+    const secondYear = await Student.find({ year: 2 });
+    const thirdYear = await Student.find({ year: 3 });
+    const fourthYear = await Student.find({ year: 4 });
+    const fifthYear = await Student.find({ year: 5 });
+    console.log(firstYear);
+    return res.render("faculty/listStudents", {
+      user: req.user,
+      firstYear,
+      secondYear,
+      thirdYear,
+      fourthYear,
+      fifthYear,
+    });
+  } catch (err) {
+    console.log(err);
   }
 });
 

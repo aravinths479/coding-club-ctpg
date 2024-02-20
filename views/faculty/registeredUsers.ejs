@@ -1,0 +1,44 @@
+<%- include('partials/facultyNavbar') %> 
+
+<br>
+<h2><%= eventName %></h2>
+<table>
+  <thead>
+    <tr>
+      <% for (var i = 0; i < teamMaxSize; i++) { %>
+      <th>User <%= i + 1 %></th>
+      <th>Roll No <%= i + 1 %></th>
+      <th>Phone Number <%= i + 1 %></th>
+      <% } %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% registeredUsers.forEach(function(user) { %>
+    <tr>
+      <% for (var i = 0; i < teamMaxSize; i++) { %> <% if (user.teamMembers[i]) { %>
+      <!-- Render each team member -->
+      <td><%= user.teamMembers[i].name %></td>
+      <td><%= user.teamMembers[i].rollNo %></td>
+      <td><%= user.teamMembers[i].phoneNumber %></td>
+      <!-- Add more columns as needed -->
+      <% } else { %>
+      <!-- If no team member exists for this column, render empty cells -->
+      <td></td>
+      <td></td>
+      <td></td>
+      <!-- Add more columns as needed -->
+      <% } %> <% } %>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+<style>
+  td {
+    border: 1px solid black;
+  }
+  th {
+    border: 1px solid black;
+  }
+</style>
