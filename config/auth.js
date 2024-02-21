@@ -10,18 +10,22 @@ module.exports = {
     if (!req.isAuthenticated()) {
       return next();
     }
-    res.redirect("/facultyDashboard");
+    if (req.user.isStudent == true) {
+      res.redirect("/studentDashboard");
+    } else {
+      res.redirect("/facultyDashboard");
+    }
   },
   isFaculty: function (req, res, next) {
     if (req.user.isFaculty == true) {
       return next();
     }
-    res.redirect("/facultyDashboard");
+    res.render("404");
   },
   isStudent: function (req, res, next) {
     if (req.user.isStudent == true) {
       return next();
     }
-    res.redirect("/studentDashboard");
+    res.render("404");
   },
 };

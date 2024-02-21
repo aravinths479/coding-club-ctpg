@@ -5,7 +5,6 @@ const RegisteredUsersSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Student",
     required: true,
-    unique : true
   },
   event: {
     type: mongoose.Schema.Types.ObjectId,
@@ -41,9 +40,10 @@ const RegisteredUsersSchema = new mongoose.Schema({
   },
 });
 
+
+
 const RegisteredUsers = mongoose.model(
   "RegisteredUsers",
   RegisteredUsersSchema
 );
-
 module.exports = RegisteredUsers;

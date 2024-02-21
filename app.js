@@ -74,6 +74,7 @@ app.use(admin.options.rootPath, router);
 app.use("/", require("./routes/index.js"));
 app.use("/users", require("./routes/users.js"));
 app.use("/event", require("./routes/event.js"));
+app.use('/student',require('./routes/student.js'))
 
 // process.on('warning', (warning) => {
 //   console.log(warning.stack);

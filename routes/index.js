@@ -13,39 +13,78 @@ const Event = require("../models/Event");
 router.get("/", forwardAuthenticated, (req, res) => res.render("welcome"));
 
 // Dashboard
-router.get("/facultyDashboard", ensureAuthenticated, async (req, res) => {
-  try {
-    console.log(req.user);
-    const currentDate = new Date();
+router.get(
+  "/facultyDashboard",
+  ensureAuthenticated,
+  isFaculty,
+  async (req, res) => {
+    try {
+      console.log(req.user);
+      const currentDate = new Date();
 
-    // Filter past events by eventEndDate
-    const pastEvents = await Event.find({ eventEndDate: { $lt: currentDate } });
+      // Filter past events by eventEndDate
+      const pastEvents = await Event.find({
+        eventEndDate: { $lt: currentDate },
+      });
 
-    // Filter ongoing live events by start and end date
-    const ongoingEvents = await Event.find({
-      eventStartDate: { $lte: currentDate },
-      eventEndDate: { $gte: currentDate }
-    });
+      // Filter ongoing live events by start and end date
+      const ongoingEvents = await Event.find({
+        eventStartDate: { $lte: currentDate },
+        eventEndDate: { $gte: currentDate },
+      });
 
-    // Filter future events by eventStartDate
-    const futureEvents = await Event.find({ eventStartDate: { $gt: currentDate } });
+      // Filter future events by eventStartDate
+      const futureEvents = await Event.find({
+        eventStartDate: { $gt: currentDate },
+      });
 
-    res.render("faculty/facultyDashboard", {
-      user: req.user,
-      pastEvents,
-      ongoingEvents,
-      futureEvents
-    });
-  } catch (err) {
-    console.log(err);
+      res.render("faculty/facultyDashboard", {
+        user: req.user,
+        pastEvents,
+        ongoingEvents,
+        futureEvents,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
-});
+);
 
-router.get("/studentDashboard", ensureAuthenticated, (req, res) => {
-  console.log(req.user);
-  res.render("studentDashboard", {
-    user: req.user,
-  });
-});
+router.get(
+  "/studentDashboard",
+  ensureAuthenticated,
+  isStudent,
+  async (req, res) => {
+    try {
+      console.log(req.user);
+      const currentDate = new Date();
+
+      // Filter past events by eventEndDate
+      const pastEvents = await Event.find({
+        eventEndDate: { $lt: currentDate },
+      });
+
+      // Filter ongoing live events by start and end date
+      const ongoingEvents = await Event.find({
+        eventStartDate: { $lte: currentDate },
+        eventEndDate: { $gte: currentDate },
+      });
+
+      // Filter future events by eventStartDate
+      const futureEvents = await Event.find({
+        eventStartDate: { $gt: currentDate },
+      });
+
+      res.render("student/studentDashboard", {
+        user: req.user,
+        pastEvents,
+        ongoingEvents,
+        futureEvents,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
 
 module.exports = router;

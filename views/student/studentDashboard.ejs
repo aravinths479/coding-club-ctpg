@@ -1,0 +1,73 @@
+<%- include('partials/studentNavbar') %>
+
+
+<h2>Past Events</h2>
+
+<% pastEvents.forEach(function(item) { %>
+<a href="/student/register-event/<%= item._id %>">
+  <div>
+    <h2><%= item.title %></h2>
+    <p>Description: <%= item.description %></p>
+    <p>Team: <%= item.team ? 'Yes' : 'No' %></p>
+    <p>
+      Start date : <%= item.eventStartDate.toLocaleDateString('en-US', {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %>
+    </p>
+    <p>
+      End date : <%= item.eventEndDate.toLocaleDateString('en-US', { weekday:
+      'long', year: 'numeric', month: 'long', day: 'numeric' }) %>
+    </p>
+
+    <p>images : <%= item.posterImages %></p>
+    // should be image src
+  </div>
+</a>
+<% }); %>
+
+<br /><br />
+<h2>Live Events</h2>
+
+<% ongoingEvents.forEach(function(item) { %>
+    <a href="/student/register-event/<%= item._id %>">
+  <div>
+    <h2><%= item.title %></h2>
+    <p>Description: <%= item.description %></p>
+    <p>Team: <%= item.team ? 'Yes' : 'No' %></p>
+    <p>
+      Start date : <%= item.eventStartDate.toLocaleDateString('en-US', {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %>
+    </p>
+    <p>
+      End date : <%= item.eventEndDate.toLocaleDateString('en-US', { weekday:
+      'long', year: 'numeric', month: 'long', day: 'numeric' }) %>
+    </p>
+
+    <p>images : <%= item.posterImages %></p>
+    // should be image src
+  </div>
+</a>
+<% }); %>
+
+<br /><br />
+<h2>Future Events</h2>
+
+<% futureEvents.forEach(function(item) { %>
+    <a href="/student/register-event/<%= item._id %>">
+  <div>
+    <h2><%= item.title %></h2>
+    <p>Description: <%= item.description %></p>
+    <p>Team: <%= item.team ? 'Yes' : 'No' %></p>
+    <p>
+      Start date : <%= item.eventStartDate.toLocaleDateString('en-US', {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %>
+    </p>
+    <p>
+      End date : <%= item.eventEndDate.toLocaleDateString('en-US', { weekday:
+      'long', year: 'numeric', month: 'long', day: 'numeric' }) %>
+    </p>
+
+    <p>images : <%= item.posterImages %></p>
+    // should be image src
+  </div>
+</a>
+<% }); %>

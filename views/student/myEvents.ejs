@@ -1,0 +1,29 @@
+<%- include('partials/studentNavbar') %>
+
+<ul>
+  <% events.forEach(event => { %>
+  <li>
+    <h3><%= event.event.title %></h3>
+    <p><%= event.event.description %></p>
+    <p>
+      Start date : <%= event.event.eventStartDate.toLocaleDateString('en-US', {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %>
+    </p>
+    <p>
+      End date : <%= event.event.eventEndDate.toLocaleDateString('en-US', {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %>
+    </p>
+    <p>Created: <%= event.created %></p>
+    <% if (event.teamName) { %>
+    <p>Team Name: <%= event.teamName %></p>
+    <% } %> <% if (event.teamMembers && event.teamMembers.length > 0) { %>
+    <p>Team Members:</p>
+    <ul>
+      <% event.teamMembers.forEach(member => { %>
+      <li><%= member.name %></li>
+      <% }) %>
+    </ul>
+    <% } %>
+  </li>
+  <% }) %>
+</ul>

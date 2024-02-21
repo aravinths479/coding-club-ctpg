@@ -1,0 +1,103 @@
+<%- include('partials/studentNavbar') %>
+
+<h3>Register for Event</h3>
+<br />
+
+<%- include ("./partials/messages"); %>
+
+<h2>Register Users</h2>
+<form action="/student/register-event/<%= eventId %>" method="POST">
+  <% if (isTeam) { %>
+  <label for="teamName">Team Name:</label><br />
+  <input type="text" id="teamName" name="teamName" /><br />
+
+  <label for="teamMembers">Team Members:</label><br />
+  <div id="teamMembersContainer">
+    <div class="team-member">
+      <label for="teamMemberName">Name:</label>
+      <input
+        type="text"
+        class="team-member-name"
+        name="teamMemberName[]"
+        value="<%= user.name %>"
+        required
+      />
+      <label for="teamMemberRollNo">Roll Number:</label>
+      <input
+        type="text"
+        class="team-member-rollno"
+        name="teamMemberRollNo[]"
+        value="<%= user.rollNumber %>"
+        required
+      />
+      <label for="teamMemberPhone">Phone Number:</label>
+      <input
+        type="text"
+        class="team-member-phone"
+        name="teamMemberPhone[]"
+        value="<%= user.phoneNumber %>"
+        required
+      />
+      <label for="teamMemberPhone">email</label>
+      <input
+        type="text"
+        class="team-member-email"
+        name="teamMemberEmail[]"
+        value="<%= user.email %>"
+        required
+      />
+    </div>
+  </div>
+  <button type="button" id="addTeamMember">Add Team Member</button><br />
+
+  <% } %>
+
+  <input type="submit" value="Submit" />
+</form>
+
+<script>
+  const addTeamMemberButton = document.getElementById("addTeamMember");
+  const teamMembersContainer = document.getElementById("teamMembersContainer");
+  const maxTeamMembers = parseInt(
+    "<%= teamMaxSize %>",
+    10
+  ); /* Get the maximum team members limit from the server */
+  let teamMemberCount = 1;
+
+  addTeamMemberButton.addEventListener("click", function () {
+    if (teamMemberCount < maxTeamMembers) {
+      const newTeamMember = document.createElement("div");
+      newTeamMember.classList.add("team-member");
+      newTeamMember.innerHTML = `
+        <label for="teamMemberName">Name:</label>
+        <input type="text" class="team-member-name" name="teamMemberName[]" required>
+        <label for="teamMemberRollNo">Roll Number:</label>
+        <input type="text" class="team-member-rollno" name="teamMemberRollNo[]" required>
+        <label for="teamMemberPhone">Phone Number:</label>
+        <input type="text" class="team-member-phone" name="teamMemberPhone[]" required>
+        <label for="teamMemberPhone">email</label>
+        <input type="text" class="team-member-email" name="teamMemberEmail[]" required>
+        <button type="button" class="remove-team-member">Remove</button>
+      `;
+      teamMembersContainer.appendChild(newTeamMember);
+      teamMemberCount++;
+
+      // Disable the button if maximum team members limit is reached
+      if (teamMemberCount === maxTeamMembers) {
+        addTeamMemberButton.disabled = true;
+      }
+
+      // Add event listener to remove button
+      const removeButton = newTeamMember.querySelector(".remove-team-member");
+      removeButton.addEventListener("click", function () {
+        teamMembersContainer.removeChild(newTeamMember);
+        teamMemberCount--;
+
+        // Enable the button if maximum team members limit is not reached
+        if (teamMemberCount < maxTeamMembers) {
+          addTeamMemberButton.disabled = false;
+        }
+      });
+    }
+  });
+</script>
