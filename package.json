@@ -28,7 +28,8 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "tailwind": "^4.0.0",
-    "tslib": "^2.6.2"
+    "tslib": "^2.6.2",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "nodemon": "^1.18.9"

@@ -41,7 +41,6 @@ const RegisteredUsersSchema = new mongoose.Schema({
 });
 
 
-
 const RegisteredUsers = mongoose.model(
   "RegisteredUsers",
   RegisteredUsersSchema

@@ -1,6 +1,8 @@
 const express = require("express");
 const { DateTime } = require("luxon");
 const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
+const multer = require("multer");
+const uuid = require("uuid");
 
 const router = express.Router();
 const {
@@ -17,19 +19,26 @@ router.get("/create-event", ensureAuthenticated, isFaculty, (req, res) =>
   res.render("faculty/createEvent", { user: req.user })
 );
 
-// Configure AWS
 const s3 = new S3Client({
-  region: "ap-south-1",
+  region: "us-east-1",
   credentials: {
-    accessKeyId: "AKIASGQARUQKOR4HBPUI",
-    secretAccessKey: "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",
+    accessKeyId: "AKIASGQARUQKLAAL4D3U",
+    secretAccessKey: "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",
   },
+});
+
+const upload = multer({
+  storage: multer.memoryStorage(), // Use memory storage as we'll directly upload the buffer to S3
 });
 
 router.post(
   "/create-event",
   ensureAuthenticated,
   isFaculty,
+  upload.fields([
+    { name: "posterImages", maxCount: 10 },
+    { name: "documents", maxCount: 10 },
+  ]),
   async (req, res) => {
     try {
       //console.log(req.body);
@@ -45,11 +54,87 @@ router.post(
         allowResponse,
       } = req.body;
 
+      const posterImages = req.files["posterImages"];
+      const documents = req.files["documents"];
+
+      let totalSize = 0;
+
+      // Calculate the total size of uploaded files
+      if (posterImages) {
+        for (const file of posterImages) {
+          totalSize += file.size;
+        }
+      }
+
+      if (documents) {
+        for (const file of documents) {
+          totalSize += file.size;
+        }
+      }
+
+      const maxSizeInBytes = 8 * 1024 * 1024; // 8 MB
+
+      if (totalSize > maxSizeInBytes) {
+        req.flash(
+          "error_msg",
+          "Combined files size exceeds the limit. Please lower the memory of the files to below 8 MB."
+        );
+        return res.redirect("/event/create-event");
+      }
+
+      const posterUrls = [];
+      const documentUrls = [];
+
       // Check for missing required fields
       if (!title || !description || !eventStartDate || !eventEndDate) {
         return res
           .status(400)
           .send("Title, description, start date, and end date are required.");
+      }
+      if (posterImages) {
+        for (const file of posterImages) {
+          const fileName = file.originalname;
+          const fileId = uuid.v4(); // Generate UUID for fileId
+          const fileUrl = `https://coding-club.s3.us-east-1.amazonaws.com/${fileId}_${fileName}`;
+
+          // Upload poster image to S3
+          const params = {
+            Bucket: "coding-club",
+            Key: fileId + "_" + fileName,
+            Body: file.buffer,
+            ACL: "public-read",
+            ContentType: file.mimetype,
+            ContentDisposition: "inline",
+          };
+
+          const command = new PutObjectCommand(params);
+          await s3.send(command);
+
+          posterUrls.push(fileUrl);
+        }
+      }
+
+      if (documents) {
+        for (const file of documents) {
+          const fileName = file.originalname;
+          const fileId = uuid.v4(); // Generate UUID for fileId
+          const fileUrl = `https://coding-club.s3.us-east-1.amazonaws.com/${fileId}_${fileName}`;
+
+          // Upload document to S3
+          const params = {
+            Bucket: "coding-club",
+            Key: fileId + "_" + fileName,
+            Body: file.buffer,
+            ACL: "public-read",
+            ContentType: file.mimetype,
+            ContentDisposition: "inline",
+          };
+
+          const command = new PutObjectCommand(params);
+          await s3.send(command);
+
+          documentUrls.push(fileUrl);
+        }
       }
 
       // Convert the checkbox value to a boolean
@@ -71,6 +156,8 @@ router.post(
         eventStartDate: formattedStartDate,
         eventEndDate: formattedEndDate,
         contact,
+        posterImages: posterUrls,
+        documents: documentUrls,
         allowResponse: allowResponseBool,
       });
 

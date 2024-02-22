@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
+
+
 const {
   ensureAuthenticated,
   forwardAuthenticated,
@@ -11,7 +13,7 @@ const {
 const Event = require("../models/Event");
 const Student = require("../models/Student");
 const Faculty = require("../models/Faculty");
-const RegisteredUsers = require('../models/RegisteredUsers')
+const RegisteredUsers = require("../models/RegisteredUsers");
 
 router.get("/profile", ensureAuthenticated, isStudent, async (req, res) => {
   try {
@@ -123,6 +125,7 @@ router.post(
   ensureAuthenticated,
   isStudent,
   async (req, res) => {
+    console.log(req.body);
     const eventId = req.params.eventId;
     const event = await Event.findById(eventId);
 
@@ -149,7 +152,7 @@ router.post(
     } else {
       registeredUser = new RegisteredUsers({
         user: req.user._id,
-        event: eventId
+        event: eventId,
       });
     }
 
@@ -158,7 +161,7 @@ router.post(
       .save()
       .then((savedUser) => {
         console.log("Registered for event successfully:", savedUser);
-        res.redirect('/student/my-events'); // Redirect to dashboard after successful registration
+        res.redirect("/student/my-events"); // Redirect to dashboard after successful registration
       })
       .catch((error) => {
         console.error("Error saving registered user data:", error);
@@ -167,16 +170,19 @@ router.post(
   }
 );
 
-router.get('/my-events',ensureAuthenticated,isStudent,async (req,res)=>{
-  try{
-    const registerdEvents = await RegisteredUsers.find({user:req.user._id}).populate('event');
+router.get("/my-events", ensureAuthenticated, isStudent, async (req, res) => {
+  try {
+    const registerdEvents = await RegisteredUsers.find({
+      user: req.user._id,
+    }).populate("event");
     console.log(registerdEvents);
-    return res.render('student/myEvents',{user:req.user,events:registerdEvents})
-  }
-  catch(err){
+    return res.render("student/myEvents", {
+      user: req.user,
+      events: registerdEvents,
+    });
+  } catch (err) {
     console.log(err);
   }
-})
-
+});
 
 module.exports = router;

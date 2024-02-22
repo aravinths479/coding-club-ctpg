@@ -1,9 +1,8 @@
-dbPassword = 'mongodb+srv://automobile:vscode1234@cluster0.z8aqhld.mongodb.net/coding-club';
+dbPassword = "mongodb+srv://codingClubCtpg:vscode1234@cluster0.plnfpnp.mongodb.net/codingClubCtpg";
 
 module.exports = {
-    mongoURI: dbPassword
+  mongoURI: dbPassword,
 };
 
-
 // mongodb://localhost:27017/coding_club
-// mongodb+srv://automobile:vscode1234@cluster0.z8aqhld.mongodb.net/coding-club
+// mongodb+srv://codingClubCtpg:vscode1234@cluster0.plnfpnp.mongodb.net/codingClubCtpg

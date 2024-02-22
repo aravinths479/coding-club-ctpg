@@ -3,7 +3,7 @@
 <h1>create event</h1>
 <%- include ("./partials/messages"); %>
 
-<form action="/event/create-event" method="post">
+<form action="/event/create-event" method="post"  enctype="multipart/form-data">
   <label for="">Title</label>
   <input type="text" name="title" />
   <br />
@@ -26,10 +26,10 @@
   <input type="date" name="eventEndDate" />
   <br />
   <label for="">posters</label>
-  <input type="file" name="posters" multiple />
+  <input type="file" name="posterImages" multiple />
   <br />
   <label for="">documents</label>
-  <input type="file" name="documents" />
+  <input type="file" name="documents" multiple/>
   <br />
   <label for="">Contact</label>
   <input type="text" name="contact" />
