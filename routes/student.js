@@ -33,7 +33,7 @@ router.post(
         req.body;
 
       // Find the student by their user ID
-      const student = await Student.findOneAndUpdate(
+      const student = await Student.updateOne(
         { _id: req.user._id },
         { name, year, rollNumber, phoneNumber, leetcodeId, gitHub },
         { new: true } // Return the updated document

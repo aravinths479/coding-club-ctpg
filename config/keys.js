@@ -1,4 +1,4 @@
-dbPassword = "mongodb+srv://codingClubCtpg:vscode1234@cluster0.plnfpnp.mongodb.net/codingClubCtpg";
+dbPassword = process.env.PROD_DB;
 
 module.exports = {
   mongoURI: dbPassword,

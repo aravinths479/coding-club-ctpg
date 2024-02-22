@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const flash = require("connect-flash");
 const session = require("express-session");
+require('dotenv').config();
+
 
 const app = express();
 
@@ -80,6 +82,6 @@ app.use('/student',require('./routes/student.js'))
 //   console.log(warning.stack);
 // });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, console.log(`Server running on  ${PORT}`));

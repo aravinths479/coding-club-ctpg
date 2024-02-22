@@ -20,10 +20,10 @@ router.get("/create-event", ensureAuthenticated, isFaculty, (req, res) =>
 );
 
 const s3 = new S3Client({
-  region: "us-east-1",
+  region: process.env.REGION,
   credentials: {
-    accessKeyId: "AKIASGQARUQKLAAL4D3U",
-    secretAccessKey: "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",
+    accessKeyId: process.env.ACCESSKEYID,
+    secretAccessKey: process.env.SECRETACCESSKEY,
   },
 });
 
@@ -95,11 +95,11 @@ router.post(
         for (const file of posterImages) {
           const fileName = file.originalname;
           const fileId = uuid.v4(); // Generate UUID for fileId
-          const fileUrl = `https://coding-club.s3.us-east-1.amazonaws.com/${fileId}_${fileName}`;
+          const fileUrl = `https://${process.env.BUCKET}.s3.${process.env.REGION}.amazonaws.com/${fileId}_${fileName}`;
 
           // Upload poster image to S3
           const params = {
-            Bucket: "coding-club",
+            Bucket: process.env.BUCKET,
             Key: fileId + "_" + fileName,
             Body: file.buffer,
             ACL: "public-read",
@@ -122,7 +122,7 @@ router.post(
 
           // Upload document to S3
           const params = {
-            Bucket: "coding-club",
+            Bucket: process.env.BUCKET,
             Key: fileId + "_" + fileName,
             Body: file.buffer,
             ACL: "public-read",
