@@ -7,6 +7,8 @@
 	<script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
 	<link rel="shortcut icon" href="./coding-club.png" type="image/x-icon">
 	<link rel="stylesheet" href="./login.css" />
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 	<title>Coding Club of CT-PG</title>
 </head>
 
@@ -15,30 +17,85 @@
 		<div class="forms-container">
 			<div class="signin-signup">
 				<form action="#" class="sign-in-form">
-					<h2 class="title">Student Login</h2>
-					<div class="input-field">
-						<i class="fas fa-envelope"></i>
-						<input type="email" placeholder="Email" />
+					<div class="sign-in-form1">
+						<h2 class="title">Student Login</h2>
+						<div class="input-field">
+							<i class="fas fa-envelope"></i>
+							<input type="email" placeholder="Email" />
+						</div>
+						<div class="input-field">
+							<i class="fas fa-lock"></i>
+							<input type="password" placeholder="Password" />
+						</div>
+						<p>No Account ? <a class="ctxt ssubtn" href="">Register</a></p>
+						<input type="submit" value="Login" class="btn solid" />
 					</div>
-					<div class="input-field">
-						<i class="fas fa-lock"></i>
-						<input type="password" placeholder="Password" />
+
+					<!--  -->
+					<div class="sReg-form" style="display: none;">
+						<h2 class="title">Student SignUp</h2>
+						<div class="input-field">
+							<i class="fas fa-user"></i>
+							<input type="text" placeholder="Name" />
+						</div>
+						<div class="input-field">
+							<i class="fas fa-envelope"></i>
+							<input type="email" placeholder="Email" />
+						</div>
+						<div class="input-field">
+							<i class="fas fa-lock"></i>
+							<input type="password" placeholder="Password" />
+						</div>
+						<div class="input-field">
+							<i class="fas fa-lock"></i>
+							<input type="password" placeholder="Confirm Password" />
+						</div>
+						<p>Already have an Account ? <a class="ctxt lsubtn" href="">Login</a></p>
+						<input type="submit" value="SignUp" class="btn solid" />
+
 					</div>
-					<input type="submit" value="Login" class="btn solid" />
 
 				</form>
-				<form action="#" class="sign-up-form">
-					<h2 class="title">Faculty Login</h2>
 
-					<div class="input-field">
-						<i class="fas fa-envelope"></i>
-						<input type="email" placeholder="Email" />
+				<form action="#" class="sign-up-form">
+					<div class="sign-up-form1">
+						<h2 class="title">Faculty Login</h2>
+						<div class="input-field">
+							<i class="fas fa-envelope"></i>
+							<input type="email" placeholder="Email" />
+						</div>
+						<div class="input-field">
+							<i class="fas fa-lock"></i>
+							<input type="password" placeholder="Password" />
+						</div>
+						<p>No Account ? <a class="ctxt fsubtn" href="">Register</a></p>
+						<input type="submit" value="Login" class="btn solid" />
 					</div>
-					<div class="input-field">
-						<i class="fas fa-lock"></i>
-						<input type="password" placeholder="Password" />
+
+					<!--  -->
+					<div class="fReg-form" style="display: none;">
+						<h2 class="title">Faculty SignUp</h2>
+						<div class="input-field">
+							<i class="fas fa-user"></i>
+							<input type="text" placeholder="Name" />
+						</div>
+						<div class="input-field">
+							<i class="fas fa-envelope"></i>
+							<input type="email" placeholder="Email" />
+						</div>
+						<div class="input-field">
+							<i class="fas fa-lock"></i>
+							<input type="password" placeholder="Password" />
+						</div>
+						<div class="input-field">
+							<i class="fas fa-lock"></i>
+							<input type="password" placeholder="Confirm Password" />
+						</div>
+						<p>Already have an Account ? <a class="ctxt flsubtn" href="">Login</a></p>
+						<input type="submit" value="SignUp" class="btn solid" />
+
 					</div>
-					<input type="submit" class="btn" value="Login" />
+
 
 				</form>
 			</div>

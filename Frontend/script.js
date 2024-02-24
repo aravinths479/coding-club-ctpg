@@ -9,3 +9,30 @@ sign_up_btn.addEventListener("click", () => {
 sign_in_btn.addEventListener("click", () => {
   container.classList.remove("sign-up-mode");
 });
+
+// ++++++++++++++++++
+
+$(document).ready(function () {
+  $(".ssubtn").click(function (event) {
+    event.preventDefault();
+    $(".sign-in-form1").hide();
+    $(".sReg-form").show();
+  });
+  $(".lsubtn").click(function (event) {
+    event.preventDefault();
+    $(".sign-in-form1, .sReg-form").toggle();
+  });
+});
+
+// ***************************
+$(document).ready(function () {
+  $(".fsubtn").click(function (event) {
+    event.preventDefault();
+    $(".sign-up-form1").hide();
+    $(".fReg-form").show();
+  });
+  $(".flsubtn").click(function (event) {
+    event.preventDefault();
+    $(".sign-up-form1, .fReg-form").toggle();
+  });
+});
