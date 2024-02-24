@@ -11,6 +11,7 @@ const {
   forwardAuthenticated,
   ensureAuthenticated,
   isFaculty,
+  isStudent,
 } = require("../config/auth");
 
 // Login Page
@@ -113,7 +114,10 @@ router.get(
     try {
       const Users = await Faculty.find({});
       console.log(Users);
-      return res.render("faculty/ListAdminUsers", { user: req.user, users: Users });
+      return res.render("faculty/ListAdminUsers", {
+        user: req.user,
+        users: Users,
+      });
     } catch (err) {
       console.log(err);
     }
@@ -171,26 +175,31 @@ router.post(
   }
 );
 
-router.get("/get-students", ensureAuthenticated, isFaculty, async (req, res) => {
-  try {
-    const firstYear = await Student.find({ year: 1 });
-    const secondYear = await Student.find({ year: 2 });
-    const thirdYear = await Student.find({ year: 3 });
-    const fourthYear = await Student.find({ year: 4 });
-    const fifthYear = await Student.find({ year: 5 });
-    console.log(firstYear);
-    return res.render("faculty/listStudents", {
-      user: req.user,
-      firstYear,
-      secondYear,
-      thirdYear,
-      fourthYear,
-      fifthYear,
-    });
-  } catch (err) {
-    console.log(err);
+router.get(
+  "/get-students",
+  ensureAuthenticated,
+  isFaculty,
+  async (req, res) => {
+    try {
+      const firstYear = await Student.find({ year: 1 });
+      const secondYear = await Student.find({ year: 2 });
+      const thirdYear = await Student.find({ year: 3 });
+      const fourthYear = await Student.find({ year: 4 });
+      const fifthYear = await Student.find({ year: 5 });
+      console.log(firstYear);
+      return res.render("faculty/listStudents", {
+        user: req.user,
+        firstYear,
+        secondYear,
+        thirdYear,
+        fourthYear,
+        fifthYear,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
-});
+);
 
 // Logout
 router.get("/logout", (req, res) => {

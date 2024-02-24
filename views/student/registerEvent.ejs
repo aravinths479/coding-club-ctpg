@@ -1,103 +1,238 @@
 <%- include('partials/studentNavbar') %>
 
-<h3>Register for Event</h3>
-<br />
-
 <%- include ("./partials/messages"); %>
 
-<h2>Register Users</h2>
-<form action="/student/register-event/<%= eventId %>" method="POST">
-  <% if (isTeam) { %>
-  <label for="teamName">Team Name:</label><br />
-  <input type="text" id="teamName" name="teamName" /><br />
-
-  <label for="teamMembers">Team Members:</label><br />
-  <div id="teamMembersContainer">
-    <div class="team-member">
-      <label for="teamMemberName">Name:</label>
-      <input
-        type="text"
-        class="team-member-name"
-        name="teamMemberName[]"
-        value="<%= user.name %>"
-        required
-      />
-      <label for="teamMemberRollNo">Roll Number:</label>
-      <input
-        type="text"
-        class="team-member-rollno"
-        name="teamMemberRollNo[]"
-        value="<%= user.rollNumber %>"
-        required
-      />
-      <label for="teamMemberPhone">Phone Number:</label>
-      <input
-        type="text"
-        class="team-member-phone"
-        name="teamMemberPhone[]"
-        value="<%= user.phoneNumber %>"
-        required
-      />
-      <label for="teamMemberPhone">email</label>
-      <input
-        type="text"
-        class="team-member-email"
-        name="teamMemberEmail[]"
-        value="<%= user.email %>"
-        required
-      />
+  <style>
+    /* Custom CSS */
+    .carousel-img {
+      max-height: 500px; /* Adjust the value as needed */
+      margin: 0 auto; /* Center the image horizontally */
+    }
+  </style>
+  <div class="container mt-5">
+    <!-- Title -->
+    <h2 class="text-center mb-4 font-weight-bold"><%= event.title %></h2>
+  
+    <!-- Carousel for Images -->
+    <div id="carouselExampleIndicators" class="carousel slide mb-4" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <% for (let i = 0; i < event.posterImages.length; i++) { %>
+          <li data-target="#carouselExampleIndicators" data-slide-to="<%= i %>" <%= i === 0 ? 'class="active"' : '' %>></li>
+        <% } %>
+      </ol>
+      <div class="carousel-inner">
+        <% event.posterImages.forEach((image, index) => { %>
+          <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+            <img src="<%= image %>" class="d-block w-100 carousel-img" alt="Event Poster Image">
+          </div>
+        <% }); %>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  
+    <!-- Description -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title font-weight-bold">Description</h5>
+        <p class="card-text"><%= event.description %></p>
+      </div>
+    </div>
+  
+    <!-- Event Details -->
+    <div class="row">
+      <div class="col-md-6">
+        <h5 class="font-weight-bold">Event Start Date</h5>
+        <p><%= new Date(event.eventStartDate).toDateString() %></p>
+      </div>
+      <div class="col-md-6">
+        <h5 class="font-weight-bold">Event End Date</h5>
+        <p><%= new Date(event.eventEndDate).toDateString() %></p>
+      </div>
+      <div class="col-md-6">
+        <h5 class="font-weight-bold">Attached Documents</h5>
+        <% event.documents.forEach((item, index) => { %>
+        <a href="<%= item %>" target="_blank">Click to view</a>
+        <br>
+        <% }); %>
+      </div>
+      <div class="col-md-6">
+        <h5 class="font-weight-bold">Contact / coordinator</h5>
+        <p><%= event.contact[0] %></p>
+      </div>
+    </div>
+    <% if (event.isEventEnded == false) { %>
+    <!-- Register Button -->
+    <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#registrationModal">
+      Register 
+    </button>
+    <% } else { %>
+      <h4><strong>Registration Disabed</strong></h4>
+      <% } %>
+    <!-- Registration Modal -->
+    <div class="modal fade" id="registrationModal" tabindex="-1" role="dialog" aria-labelledby="registrationModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="registrationModalLabel">Registration Form</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            
+            <div class="container mt-5">
+            <h2 class="text-center">Register For Event</h2>
+            <form action="/student/register-event/<%= eventId %>" method="POST">
+              <% if (isTeam == true) { %>
+              <div class="form-group">
+                <label for="teamName">Team Name:</label>
+                <input type="text" class="form-control" id="teamName" name="teamName" required>
+              </div>
+          
+              <div id="teamMembersContainer">
+                <div class="team-member">
+                  <div class="form-row">
+                    <div class="col">
+                      <label for="teamMemberName">Name:</label>
+                      <input type="text" class="form-control" name="teamMemberName[]" value="<%= user.name %>" required>
+                    </div>
+                    <div class="col">
+                      <label for="teamMemberRollNo">Roll Number:</label>
+                      <input type="text" class="form-control" name="teamMemberRollNo[]" value="<%= user.rollNumber %>" required>
+                    </div>
+                    <div class="col">
+                      <label for="teamMemberYear">Year:</label>
+                      <input type="number" class="form-control" name="teamMemberYear[]" value="<%= user.year %>" required>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col">
+                      <label for="teamMemberPhone">Phone Number:</label>
+                      <input type="text" class="form-control" name="teamMemberPhone[]" value="<%= user.phoneNumber %>" required>
+                    </div>
+                    <div class="col">
+                      <label for="teamMemberEmail">Email:</label>
+                      <input type="email" class="form-control" name="teamMemberEmail[]" value="<%= user.email %>" required>
+                    </div>
+                  </div>
+                </div>
+                <br>
+              <hr>
+              <br>
+              </div>
+              
+              <button type="button" id="addTeamMember" class="btn btn-primary mt-3">Add Team Member</button>
+          
+              <% } else{ %>  
+  
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Your Details</h5>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Email:</strong> <%= user.email %></li>
+        <li class="list-group-item"><strong>Name:</strong> <%= user.name %></li>
+        <li class="list-group-item"><strong>Year:</strong> <%= user.year %></li>
+        <li class="list-group-item"><strong>Roll Number:</strong> <%= user.rollNumber %></li>
+        <li class="list-group-item"><strong>Phone Number:</strong> <%= user.phoneNumber %></li>
+      </ul>
     </div>
   </div>
-  <button type="button" id="addTeamMember">Add Team Member</button><br />
+  <br>
+              <br>
+              <a href="/student/profile" target="_blank">Update Profile Now</a>
+              <br>
+              <br>
+              <% } %>
+              
+          
+              <button type="submit" class="btn btn-success mt-3">Register Now</button>
+            </form>
 
-  <% } %>
+          </div>
+          
+  
+          <script>
+            const addTeamMemberButton = document.getElementById("addTeamMember");
+            const teamMembersContainer = document.getElementById("teamMembersContainer");
+            const maxTeamMembers = parseInt(
+              "<%= teamMaxSize %>",
+              10
+            ); /* Get the maximum team members limit from the server */
+            let teamMemberCount = 1;
+          
+            addTeamMemberButton.addEventListener("click", function () {
+              if (teamMemberCount < maxTeamMembers) {
+                const newTeamMember = document.createElement("div");
+                newTeamMember.classList.add("team-member");
+                newTeamMember.innerHTML = `
+                  <div class="form-row">
+                    <div class="col">
+                      <label for="teamMemberName">Name:</label>
+                      <input type="text" class="form-control" name="teamMemberName[]" required>
+                    </div>
+                    <div class="col">
+                      <label for="teamMemberRollNo">Roll Number:</label>
+                      <input type="text" class="form-control" name="teamMemberRollNo[]" required>
+                    </div>
+                    <div class="col">
+                      <label for="teamMemberYear">Year:</label>
+                      <input type="text" class="form-control" name="teamMemberYear[]" required>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col">
+                      <label for="teamMemberPhone">Phone Number:</label>
+                      <input type="text" class="form-control" name="teamMemberPhone[]" required>
+                    </div>
+                    <div class="col">
+                      <label for="teamMemberEmail">Email:</label>
+                      <input type="email" class="form-control" name="teamMemberEmail[]" required>
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn-danger mt-2 remove-team-member">Remove</button>
+                  <br/>
+                  <hr/>
+                  <br/>
 
-  <input type="submit" value="Submit" />
-</form>
+                `;
+                teamMembersContainer.appendChild(newTeamMember);
+                teamMemberCount++;
+          
+                // Disable the button if maximum team members limit is reached
+                if (teamMemberCount === maxTeamMembers) {
+                  addTeamMemberButton.disabled = true;
+                }
+          
+                // Add event listener to remove button
+                const removeButton = newTeamMember.querySelector(".remove-team-member");
+                removeButton.addEventListener("click", function () {
+                  teamMembersContainer.removeChild(newTeamMember);
+                  teamMemberCount--;
+          
+                  // Enable the button if maximum team members limit is not reached
+                  if (teamMemberCount < maxTeamMembers) {
+                    addTeamMemberButton.disabled = false;
+                  }
+                });
+              }
+            });
+          </script>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <!-- Add your submit button or additional buttons here if needed -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<script>
-  const addTeamMemberButton = document.getElementById("addTeamMember");
-  const teamMembersContainer = document.getElementById("teamMembersContainer");
-  const maxTeamMembers = parseInt(
-    "<%= teamMaxSize %>",
-    10
-  ); /* Get the maximum team members limit from the server */
-  let teamMemberCount = 1;
 
-  addTeamMemberButton.addEventListener("click", function () {
-    if (teamMemberCount < maxTeamMembers) {
-      const newTeamMember = document.createElement("div");
-      newTeamMember.classList.add("team-member");
-      newTeamMember.innerHTML = `
-        <label for="teamMemberName">Name:</label>
-        <input type="text" class="team-member-name" name="teamMemberName[]" required>
-        <label for="teamMemberRollNo">Roll Number:</label>
-        <input type="text" class="team-member-rollno" name="teamMemberRollNo[]" required>
-        <label for="teamMemberPhone">Phone Number:</label>
-        <input type="text" class="team-member-phone" name="teamMemberPhone[]" required>
-        <label for="teamMemberPhone">email</label>
-        <input type="text" class="team-member-email" name="teamMemberEmail[]" required>
-        <button type="button" class="remove-team-member">Remove</button>
-      `;
-      teamMembersContainer.appendChild(newTeamMember);
-      teamMemberCount++;
 
-      // Disable the button if maximum team members limit is reached
-      if (teamMemberCount === maxTeamMembers) {
-        addTeamMemberButton.disabled = true;
-      }
-
-      // Add event listener to remove button
-      const removeButton = newTeamMember.querySelector(".remove-team-member");
-      removeButton.addEventListener("click", function () {
-        teamMembersContainer.removeChild(newTeamMember);
-        teamMemberCount--;
-
-        // Enable the button if maximum team members limit is not reached
-        if (teamMemberCount < maxTeamMembers) {
-          addTeamMemberButton.disabled = false;
-        }
-      });
-    }
-  });
-</script>

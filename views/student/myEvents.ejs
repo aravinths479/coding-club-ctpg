@@ -1,29 +1,99 @@
 <%- include('partials/studentNavbar') %>
 
-<ul>
-  <% events.forEach(event => { %>
-  <li>
-    <h3><%= event.event.title %></h3>
-    <p><%= event.event.description %></p>
-    <p>
-      Start date : <%= event.event.eventStartDate.toLocaleDateString('en-US', {
-      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %>
-    </p>
-    <p>
-      End date : <%= event.event.eventEndDate.toLocaleDateString('en-US', {
-      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %>
-    </p>
-    <p>Created: <%= event.created %></p>
-    <% if (event.teamName) { %>
-    <p>Team Name: <%= event.teamName %></p>
-    <% } %> <% if (event.teamMembers && event.teamMembers.length > 0) { %>
-    <p>Team Members:</p>
-    <ul>
-      <% event.teamMembers.forEach(member => { %>
-      <li><%= member.name %></li>
-      <% }) %>
-    </ul>
-    <% } %>
-  </li>
-  <% }) %>
-</ul>
+<div class="container mt-5">
+  <h2 class="mb-4">Registered Events</h2>
+  <div class="row">
+    <% events.forEach(event => { %>
+    <div class="col-md-12 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-header">
+            <strong><%= event.event.title %></strong>
+          </div>
+          <br>
+          
+          <p class="card-text description" >
+            <!-- Added a class "description" -->
+            <strong>Description:</strong> <div id="description">
+              <%= event.event.description %>
+            </div>
+          </p>
+          <p class="card-text">
+            <strong>Start Date:</strong> <%=
+            event.event.eventStartDate.toLocaleDateString('en-US', { weekday:
+            'long', year: 'numeric', month: 'long', day: 'numeric' }) %>
+          </p>
+          <p class="card-text">
+            <strong>End Date:</strong> <%=
+            event.event.eventEndDate.toLocaleDateString('en-US', { weekday:
+            'long', year: 'numeric', month: 'long', day: 'numeric' }) %>
+          </p>
+         
+          <% if (event.teamName) { %>
+          <p class="card-text">
+            <strong>Team Name:</strong> <%= event.teamName %>
+          </p>
+          <% } %> <% if (event.teamMembers && event.teamMembers.length > 0) { %>
+          <div class="team-members mt-3">
+            <!-- Added a new div for team members -->
+            <p class="card-text"><strong>Team Members:</strong></p>
+            <div class="row">
+              <!-- Added a row for team member cards -->
+              <% event.teamMembers.forEach(member => { %>
+              <div class="col-md-4 mb-3">
+                <!-- Adjusted column size for better layout -->
+                <div class="card team-card">
+                  <div class="card-body">
+                    <h5 class="card-title"><%= member.name %></h5>
+                    <p class="card-text">
+                      <strong>Roll Number:</strong> <%= member.rollNo %>
+                    </p>
+                    <p class="card-text">
+                      <strong>Year:</strong> <%= member.year %>
+                    </p>
+                    <p class="card-text">
+                      <strong>Email:</strong> <%= member.email %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <% }) %>
+            </div>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</div>
+
+<style>
+  .card {
+    border: 1px solid rgb(45, 44, 44);
+    border-radius: 10px;
+  }
+  .team-card {
+    border: 1px solid rgb(41, 41, 173);
+    background-color: rgb(112, 121, 125);
+    color: white;
+  }
+  .description strong {
+    font-weight: bold; /* Applying bold font to the "Description" text */
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var descriptions = document.querySelectorAll("#description");
+
+    descriptions.forEach(function (description) {
+      var words = description.textContent.trim().split(" ");
+      var truncatedWords = words.slice(0, 30); // Take the first 20 words
+      var truncatedText =
+        truncatedWords.join(" ") + (words.length > 20 ? "..." : ""); // Concatenate with ellipsis if the text exceeds 20 words
+
+      description.textContent = truncatedText;
+    });
+  });
+</script>

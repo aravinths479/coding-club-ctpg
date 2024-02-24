@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 
-
 const {
   ensureAuthenticated,
   forwardAuthenticated,
@@ -85,7 +84,7 @@ router.post(
       await student.save();
 
       req.flash("success_msg", "New Password Set Successfully");
-      res.redirect("/student/profile"); // Redirect to profile page after successful password change
+      res.redirect("/student/change-password"); // Redirect to profile page after successful password change
     } catch (error) {
       console.error("Error changing password:", error);
       res.status(500).send("Internal Server Error");
@@ -115,6 +114,7 @@ router.get(
       user: req.user,
       teamMaxSize,
       isTeam,
+      event,
       eventId: _id,
     });
   }
@@ -140,7 +140,9 @@ router.post(
       const teamMembers = req.body.teamMemberName.map((name, index) => ({
         name: name,
         rollNo: req.body.teamMemberRollNo[index],
+        year: parseInt(req.body.teamMemberYear[index]),
         phoneNumber: req.body.teamMemberPhone[index],
+        email: req.body.teamMemberEmail[index],
       }));
 
       registeredUser = new RegisteredUsers({

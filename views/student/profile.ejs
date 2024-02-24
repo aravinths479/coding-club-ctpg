@@ -1,54 +1,91 @@
 <%- include('partials/studentNavbar') %>
 
-<h3>Profile Update</h3>
-<br />
-<a href="/student/change-password">Change Password</a>
-<br />
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h3 class="mb-4">Profile Update</h3>
+      <a href="/student/change-password" class="mb-3">Change Password</a>
+      <br /><br />
 
-<%- include ("./partials/messages"); %>
+      <%- include ("./partials/messages"); %>
 
-<br />
-<form id="updateProfileForm" action="/student/profile-update" method="POST">
-  <label for="name">Name:</label><br />
-  <input type="text" id="name" name="name" value="<%= user.name %>" /><br />
+      <form
+        id="updateProfileForm"
+        action="/student/profile-update"
+        method="POST"
+      >
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                value="<%= user.name %>"
+              />
+            </div>
 
-  <label for="email">Email:</label><br />
-  <input type="email" id="email" value="<%= user.email %>" disabled /><br />
+            <div class="form-group">
+              <label for="year">Year:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="year"
+                name="year"
+                value="<%= user.year %>"
+              />
+            </div>
+            <div class="form-group">
+              <label for="leetcodeId">LeetCode ID:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="leetcodeId"
+                name="leetcodeId"
+                value="<%= user.leetcodeId %>"
+              />
+            </div>
+          </div>
 
-  <label for="year">Year:</label><br />
-  <input type="number" id="year" name="year" value="<%= user.year %>" /><br />
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="rollNumber">Roll Number:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="rollNumber"
+                name="rollNumber"
+                value="<%= user.rollNumber %>"
+              />
+            </div>
+            <div class="form-group">
+              <label for="phoneNumber">Phone Number:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="phoneNumber"
+                name="phoneNumber"
+                value="<%= user.phoneNumber %>"
+              />
+            </div>
 
-  <label for="rollNumber">Roll Number:</label><br />
-  <input
-    type="text"
-    id="rollNumber"
-    name="rollNumber"
-    value="<%= user.rollNumber %>"
-  /><br />
+            <div class="form-group">
+              <label for="gitHub">GitHub:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="gitHub"
+                name="gitHub"
+                value="<%= user.gitHub %>"
+              />
+            </div>
+          </div>
+        </div>
 
-  <label for="phoneNumber">Phone Number:</label><br />
-  <input
-    type="text"
-    id="phoneNumber"
-    name="phoneNumber"
-    value="<%= user.phoneNumber %>"
-  /><br />
-
-  <label for="leetcodeId">LeetCode ID:</label><br />
-  <input
-    type="text"
-    id="leetcodeId"
-    name="leetcodeId"
-    value="<%= user.leetcodeId %>"
-  /><br />
-
-  <label for="gitHub">GitHub:</label><br />
-  <input
-    type="text"
-    id="gitHub"
-    name="gitHub"
-    value="<%= user.gitHub %>"
-  /><br />
-
-  <input type="submit" value="Submit" />
-</form>
+        <button type="submit" class="btn btn-primary">Update Profile</button>
+      </form>
+    </div>
+  </div>
+</div>

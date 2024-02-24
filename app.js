@@ -15,11 +15,20 @@ require("./config/passport")(passport);
 // DB Config
 const db = require("./config/keys").mongoURI;
 
-// Connect to MongoDB
-mongoose
-  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log("MongoDB Connected"))
-  .catch((err) => console.log(err));
+
+// db connect
+function connectToMongoDB() {
+  mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log("MongoDB Connected"))
+    .catch((err) => {
+      console.error("Error connecting to MongoDB:", err);
+      console.log("Reconnecting to MongoDB...");
+      // Retry connection
+      setTimeout(connectToMongoDB, 2500); // Retry after 2.5 seconds
+    });
+}
+// Call the function to initiate the connection
+connectToMongoDB();
 
 // EJS
 app.use(expressLayouts);

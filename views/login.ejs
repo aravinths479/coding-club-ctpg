@@ -1,77 +1,200 @@
-<div class="row mt-5">
-  <div class="col-md-6 m-auto">
-    <div class="card card-body">
-      <h1 class="text-center mb-3">
-        <i class="fas fa-sign-in-alt"></i> Login Student
-      </h1>
-      <%- include ("./partials/messages"); %>
-      <form action="/users/login/student" method="POST">
-        <input type="hidden" name="role" value="student" />
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            class="form-control"
-            placeholder="Enter Email"
-          />
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value="Aravinth#1"
-            class="form-control"
-            placeholder="Enter Password"
-          />
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">Login</button>
-      </form>
-      <p class="lead mt-4">
-        No Account? <a href="/users/register">Register</a>
-      </p>
+<div class="container text-center mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card card-body">
+        <h1 class="text-center mb-3">
+          <i class="fas fa-sign-in-alt"></i> Login Student
+        </h1>
+        <%- include ("./partials/messages"); %>
+        <form action="/users/login/student" method="POST">
+          <input type="hidden" name="role" value="student" />
+          <div class="form-group">
+            <label for="studentEmail">Email</label>
+            <input
+              type="email"
+              id="studentEmail"
+              name="email"
+              class="form-control"
+              placeholder="Enter Email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="studentPassword">Password</label>
+            <input
+              type="password"
+              id="studentPassword"
+              name="password"
+              value="Aravinth#1"
+              class="form-control"
+              placeholder="Enter Password"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </form>
+        <p class="lead mt-4">
+          No Account? <a href="/users/register">Register</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card card-body">
+        <h1 class="text-center mb-3">
+          <i class="fas fa-sign-in-alt"></i> Login Faculty
+        </h1>
+        <%- include ("./partials/messages"); %>
+        <form action="/users/login/faculty" method="POST">
+          <input type="hidden" name="role" value="faculty" />
+          <div class="form-group">
+            <label for="facultyEmail">Email</label>
+            <input
+              type="email"
+              id="facultyEmail"
+              name="email"
+              class="form-control"
+              placeholder="Enter Email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="facultyPassword">Password</label>
+            <input
+              type="password"
+              id="facultyPassword"
+              name="password"
+              value="Aravinth#1"
+              class="form-control"
+              placeholder="Enter Password"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </form>
+        <p class="lead mt-4">
+          No Account? <a href="/users/register">Register</a>
+        </p>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="row mt-5">
-  <div class="col-md-6 m-auto">
-    <div class="card card-body">
-      <h1 class="text-center mb-3">
-        <i class="fas fa-sign-in-alt"></i> Login Faculty
-      </h1>
-      <%- include ("./partials/messages"); %>
-      <form action="/users/login/faculty" method="POST">
-        <input type="hidden" name="role" value="faculty" />
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            class="form-control"
-            placeholder="Enter Email"
-          />
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mb-5">
+      <div class="card shadow animated zoomIn slow p-5">
+        <h3 class="text-center font-weight-bold text-uppercase mb-3">
+          Login Student
+        </h3>
+
+        <form>
+          <div class="form-group">
+            <label>Enter Username</label>
+            <input type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Enter Password</label>
+            <input type="password" class="form-control" />
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-outline-dark btn-block rounded-pill"
+          >
+            Login
+          </button>
+        </form>
+
+        <p class="text-center mt-3">or Login with</p>
+        <center>
+          <button
+            type="submit"
+            class="btn btn-outline-dark btn-block rounded-pill"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-google"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M15.545 6.558a9.4 9.4 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.7 7.7 0 0 1 5.352 2.082l-2.284 2.284A4.35 4.35 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.8 4.8 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.7 3.7 0 0 0 1.599-2.431H8v-3.08z"
+              ></path>
+            </svg>
+          </button>
+        </center>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-5">
+      <div class="card shadow animated zoomIn slow p-5">
+        <h3 class="text-center font-weight-bold text-uppercase mb-3">
+          Login Faculty
+        </h3>
+
+        <form>
+          <div class="form-group">
+            <label>Enter Username</label>
+            <input type="text" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Enter Password</label>
+            <input type="password" class="form-control" />
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-outline-dark btn-block rounded-pill"
+          >
+            Login
+          </button>
+        </form>
+
+        <p class="text-center mt-3">or Login with</p>
+        <p></p>
+        <div class="text-center">
+          <i class="fab fa-facebook mx-2 fa-2x"></i>
+          <i class="fab fa-twitter mx-2 fa-2x"></i>
+          <i class="fab fa-instagram mx-2 fa-2x"></i>
+          <i class="fab fa-google mx-2 fa-2x"></i>
         </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value="Aravinth#1"
-            class="form-control"
-            placeholder="Enter Password"
-          />
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">Login</button>
-      </form>
-      <p class="lead mt-4">
-        No Account? <a href="/users/register">Register</a>
-      </p>
+      </div>
     </div>
   </div>
 </div>
+
+<style>
+  h3 {
+    font-family: sans-sarif;
+  }
+
+  .row {
+    min-height: 100vh;
+    align-items: center;
+  }
+
+  .google-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #4285f4;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .google-button:hover {
+    background-color: #3c78dc;
+  }
+
+  .google-logo {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+  }
+</style>

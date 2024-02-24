@@ -26,7 +26,15 @@ const RegisteredUsersSchema = new mongoose.Schema({
           type: String,
           required: true,
         },
+        year: {
+          type: Number,
+          required: true,
+        },
         phoneNumber: {
+          type: String,
+          required: true,
+        },
+        email: {
           type: String,
           required: true,
         },
@@ -39,7 +47,6 @@ const RegisteredUsersSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
-
 
 const RegisteredUsers = mongoose.model(
   "RegisteredUsers",
