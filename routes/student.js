@@ -97,26 +97,52 @@ router.get(
   ensureAuthenticated,
   isStudent,
   async (req, res) => {
-    const _id = req.params.id;
-    const event = await Event.findById(_id);
+    const eventId = req.params.id;
+    const userId = req.user._id; // Assuming req.user contains the authenticated user's information
 
-    if (!event) {
-      // If event with the given ID is not found
-      console.error("Event not found");
-      // Handle the case where the event is not found
-      return res.status(404).send("Event not found");
+    try {
+      // Check if the user is already registered for the event
+      const existingRegistration = await RegisteredUsers.findOne({
+        user: userId,
+        event: eventId,
+      });
+
+      // Initialize isRegistered flag
+      let isRegistered = false;
+
+      // Check if the registration exists
+      if (existingRegistration) {
+        isRegistered = true;
+      }
+
+      // If the user is not already registered, proceed with rendering the registration page
+      const event = await Event.findById(eventId);
+
+      if (!event) {
+        // If event with the given ID is not found
+        console.error("Event not found");
+        // Handle the case where the event is not found
+        return res.status(404).send("Event not found");
+      }
+
+      // If the event is found, extract the teamMaxSize value
+      const teamMaxSize = event.teamMaxSize;
+      const isTeam = event.team;
+      console.log(isRegistered);
+      return res.render("student/registerEvent", {
+        user: req.user,
+        teamMaxSize,
+        isTeam,
+        event,
+        isRegistered,
+        eventId,
+      });
+    } catch (error) {
+      console.error("Error checking registration:", error);
+      return res
+        .status(500)
+        .send("An error occurred while checking registration");
     }
-    console.log(event);
-    // If the event is found, extract the teamMaxSize value
-    const teamMaxSize = event.teamMaxSize;
-    const isTeam = event.team;
-    return res.render("student/registerEvent", {
-      user: req.user,
-      teamMaxSize,
-      isTeam,
-      event,
-      eventId: _id,
-    });
   }
 );
 

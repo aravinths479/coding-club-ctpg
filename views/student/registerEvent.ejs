@@ -67,14 +67,19 @@
         <p><%= event.contact[0] %></p>
       </div>
     </div>
-    <% if (event.isEventEnded == false) { %>
-    <!-- Register Button -->
-    <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#registrationModal">
-      Register 
-    </button>
+    <% if (event.isEventEnded || isRegistered )  { %>
+      <div class="alert alert-warning mt-3" role="alert">
+        <center>
+          <strong>The event has ended or you have already registered for this event</strong>
+        </center>
+      </div>
     <% } else { %>
-      <h4><strong>Registration Disabed</strong></h4>
-      <% } %>
+      <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#registrationModal">
+        Register 
+      </button>
+      
+    <% } %>
+    
     <!-- Registration Modal -->
     <div class="modal fade" id="registrationModal" tabindex="-1" role="dialog" aria-labelledby="registrationModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-xl" role="document">
