@@ -28,10 +28,8 @@ router.post(
   isStudent,
   async (req, res) => {
     try {
-      const { name, year, rollNumber, phoneNumber, leetcodeId, gitHub } =
-        req.body;
-
-      // Find the student by their user ID
+      const { name, year, rollNumber, phoneNumber, leetcodeId, gitHub } = req.body;
+       
       const student = await Student.updateOne(
         { _id: req.user._id },
         { name, year, rollNumber, phoneNumber, leetcodeId, gitHub },
@@ -160,9 +158,9 @@ router.post(
       return res.status(404).send("Event not found");
     }
 
-    let registeredUser;
 
-    if (event.team) {
+
+
       const teamMembers = req.body.teamMemberName.map((name, index) => ({
         name: name,
         rollNo: req.body.teamMemberRollNo[index],
@@ -171,18 +169,14 @@ router.post(
         email: req.body.teamMemberEmail[index],
       }));
 
-      registeredUser = new RegisteredUsers({
+      const registeredUser = new RegisteredUsers({
         user: req.user._id,
         event: eventId,
         teamName: req.body.teamName,
         teamMembers: teamMembers,
       });
-    } else {
-      registeredUser = new RegisteredUsers({
-        user: req.user._id,
-        event: eventId,
-      });
-    }
+    
+    
 
     // Save the registered user data to the database
     registeredUser

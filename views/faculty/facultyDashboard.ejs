@@ -1,72 +1,191 @@
 <%- include('partials/facultyNavbar') %>
 
-<h2>Past Events</h2>
+<div class="container mt-5">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#pastEvents">Past Events</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#liveEvents"
+        ><span id="live-icon"></span> &nbsp; Live Events</a
+      >
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#futureEvents"
+        >Future Events</a
+      >
+    </li>
+  </ul>
 
-<% pastEvents.forEach(function(item) { %>
-<a href="/event/registered-users/<%= item._id %>">
-  <div>
-    <h2><%= item.title %></h2>
-    <p>Description: <%= item.description %></p>
-    <p>Team: <%= item.team ? 'Yes' : 'No' %></p>
-    <p>
-      Start date : <%= item.eventStartDate.toLocaleDateString('en-US', {
-      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %>
-    </p>
-    <p>
-      End date : <%= item.eventEndDate.toLocaleDateString('en-US', { weekday:
-      'long', year: 'numeric', month: 'long', day: 'numeric' }) %>
-    </p>
+  <div class="tab-content mt-3">
+    <div id="pastEvents" class="tab-pane fade">
+      <% pastEvents.forEach(function(item) { %>
+      <a href="/event/registered-users/<%= item._id %>">
+        <div class="card mb-3">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img
+                src="<%= item.posterImages[0] %>"
+                class="card-img"
+                alt="Image Not found"
+              />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title"><strong><%= item.title %> </strong></h5>
+                <p class="card-text" id="description">
+                  <%= item.description %>
+                </p>
+                <p class="card-text">
+                  <small class="text-body-secondary"
+                    >Start Date: <%=
+                    item.eventStartDate.toLocaleDateString('en-US', { weekday:
+                    'long', year: 'numeric', month: 'long', day: 'numeric' })
+                    %></small
+                  ><br />
+                  <small class="text-body-secondary"
+                    >End Date: <%= item.eventEndDate.toLocaleDateString('en-US',
+                    { weekday: 'long', year: 'numeric', month: 'long', day:
+                    'numeric' }) %></small
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+      <% }); %>
+    </div>
 
-    <p>images : <%= item.posterImages %></p>
-    // should be image src in carousel
+    <div id="liveEvents" class="tab-pane show active">
+      <% ongoingEvents.forEach(function(item) { %>
+      <a href="/event/registered-users/<%= item._id %>">
+        <div class="card mb-3">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img
+                src="<%= item.posterImages[0] %>"
+                class="card-img"
+                alt="Image Not found"
+              />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title"><strong><%= item.title %> </strong></h5>
+                <p class="card-text" id="description">
+                  <%= item.description %>
+                </p>
+                <p class="card-text">
+                  <small class="text-body-secondary"
+                    >Start Date: <%=
+                    item.eventStartDate.toLocaleDateString('en-US', { weekday:
+                    'long', year: 'numeric', month: 'long', day: 'numeric' })
+                    %></small
+                  ><br />
+                  <small class="text-body-secondary"
+                    >End Date: <%= item.eventEndDate.toLocaleDateString('en-US',
+                    { weekday: 'long', year: 'numeric', month: 'long', day:
+                    'numeric' }) %></small
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+      <% }); %>
+    </div>
+    <div id="futureEvents" class="tab-pane fade">
+      <% futureEvents.forEach(function(item) { %>
+      <a href="/event/registered-users/<%= item._id %>">
+        <div class="card mb-3">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img
+                src="<%= item.posterImages[0] %>"
+                class="card-img"
+                alt="Image Not found"
+              />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title"><strong><%= item.title %> </strong></h5>
+                <p class="card-text" id="description">
+                  <%= item.description %>
+                </p>
+                <p class="card-text">
+                  <small class="text-body-secondary"
+                    >Start Date: <%=
+                    item.eventStartDate.toLocaleDateString('en-US', { weekday:
+                    'long', year: 'numeric', month: 'long', day: 'numeric' })
+                    %></small
+                  ><br />
+                  <small class="text-body-secondary"
+                    >End Date: <%= item.eventEndDate.toLocaleDateString('en-US',
+                    { weekday: 'long', year: 'numeric', month: 'long', day:
+                    'numeric' }) %></small
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+      <% }); %>
+    </div>
   </div>
-</a>
-<% }); %>
+</div>
 
-<br /><br />
-<h2>Live Events</h2>
+<style>
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  a:hover {
+    color: rgb(6, 6, 255);
+    text-decoration: none;
+  }
+  #live-icon {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: red;
+    animation: blink 0.5s infinite alternate; /* Blink animation */
+  }
 
-<% ongoingEvents.forEach(function(item) { %>
-<a href="/event/registered-users/<%= item._id %>">
-  <div>
-    <h2><%= item.title %></h2>
-    <p>Description: <%= item.description %></p>
-    <p>Team: <%= item.team ? 'Yes' : 'No' %></p>
-    <p>
-      Start date : <%= item.eventStartDate.toLocaleDateString('en-US', {
-      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %>
-    </p>
-    <p>
-      End date : <%= item.eventEndDate.toLocaleDateString('en-US', { weekday:
-      'long', year: 'numeric', month: 'long', day: 'numeric' }) %>
-    </p>
+  @keyframes blink {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+</style>
 
-    <p>images : <%= item.posterImages %></p>
-    // should be image src carousel
-  </div>
-</a>
-<% }); %>
+<script>
+  // JavaScript code to limit description to 20 words
+  document.addEventListener("DOMContentLoaded", function () {
+    var descriptions = document.querySelectorAll(".card-text#description");
 
-<br /><br />
-<h2>Future Events</h2>
+    descriptions.forEach(function (description) {
+      var words = description.textContent.trim().split(" ");
+      var truncatedWords = words.slice(0, 20); // Take the first 20 words
+      var truncatedText =
+        truncatedWords.join(" ") + (words.length > 20 ? "..." : ""); // Concatenate with ellipsis if the text exceeds 20 words
 
-<% futureEvents.forEach(function(item) { %>
-<a href="/event/registered-users/<%= item._id %>">
-  <div>
-    <h2><%= item.title %></h2>
-    <p>Description: <%= item.description %></p>
-    <p>Team: <%= item.team ? 'Yes' : 'No' %></p>
-    <p>
-      Start date : <%= item.eventStartDate.toLocaleDateString('en-US', {
-      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %>
-    </p>
-    <p>
-      End date : <%= item.eventEndDate.toLocaleDateString('en-US', { weekday:
-      'long', year: 'numeric', month: 'long', day: 'numeric' }) %>
-    </p>
+      description.textContent = truncatedText;
+    });
+  });
 
-    <p>images : <%= item.posterImages %></p>
-    // should be image src carousel 
-  </div>
-</a>
-<% }); %>
+  // live icon
+
+  // Function to toggle the live icon on and off
+  function toggleLiveIcon() {
+    var liveIcon = document.getElementById("live-icon");
+    liveIcon.classList.toggle("live"); // Toggle the 'live' class
+  }
+
+  setInterval(toggleLiveIcon, 2500);
+</script>

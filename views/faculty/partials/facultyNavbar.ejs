@@ -1,18 +1,67 @@
-<h1 class="mt-4">Faculty Dashboard</h1>
-<br />
-<p class="lead mb-3">Welcome <Strong><%= user.name %></Strong></p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand mr-auto" href="/facultyDashboard">The Coding Club</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-<a href="/users/logout" class="btn btn-secondary">Logout</a>
-<br /><br />
+    <div
+      class="collapse navbar-collapse justify-content-center"
+      id="navbarSupportedContent"
+    >
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/facultyDashboard">Events</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/event/create-event">Create event</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/add-user-by-admin">Add user</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/get-all-users"
+            >List Admin Access Users</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/get-students">Students info</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/gallery/create-gallery">Gallery</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin" target="_blank"
+            >Database Administration</a
+          >
+        </li>
+      </ul>
+    </div>
 
-<a href="/event/create-event">Create event</a>
-<br />
-<a href="/users/add-user-by-admin">Add user</a>
-<br />
-<a href="/users/get-all-users">List Admin Access Users</a>
-<br />
-<a href="/users/get-students">Students info</a>
-<br />
-<a href="/admin" target="_blank">Database Adminstartion</a>
-
-<br /><br />
+    <div class="my-2 my-lg-0">
+      <div class="dropdown">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Welcome, <%= user.name %>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/users/logout">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

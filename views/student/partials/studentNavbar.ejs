@@ -19,21 +19,21 @@
       class="collapse navbar-collapse justify-content-center"
       id="navbarSupportedContent"
     >
-      <!-- Added justify-content-center class to center align -->
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="/student/profile">Profile</a>
-        </li>
         <li class="nav-item">
           <a class="nav-link" href="/studentDashboard">Events</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/student/profile">Profile</a>
+        </li>
+
         <li class="nav-item">
           <a class="nav-link" href="/student/change-password"
             >Change Password</a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/student/my-events">My registered events</a>
+          <a class="nav-link" href="/student/my-events"> Registered events</a>
         </li>
       </ul>
     </div>
@@ -47,7 +47,7 @@
           aria-haspopup="true"
           aria-expanded="false"
         >
-          Welcome <%= user.name %>
+          Welcome, <%= user.name %>
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="/users/logout">Logout</a>

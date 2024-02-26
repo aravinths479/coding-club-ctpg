@@ -56,6 +56,7 @@
         <p><%= new Date(event.eventEndDate).toDateString() %></p>
       </div>
       <div class="col-md-6">
+        
         <h5 class="font-weight-bold">Attached Documents</h5>
         <% event.documents.forEach((item, index) => { %>
         <a href="<%= item %>" target="_blank">Click to view</a>
@@ -100,7 +101,6 @@
                 <label for="teamName">Team Name:</label>
                 <input type="text" class="form-control" id="teamName" name="teamName" required>
               </div>
-          
               <div id="teamMembersContainer">
                 <div class="team-member">
                   <div class="form-row">
@@ -135,9 +135,9 @@
               
               <button type="button" id="addTeamMember" class="btn btn-primary mt-3">Add Team Member</button>
           
-              <% } else{ %>  
+              <% } %>  
   
-  <div class="card">
+  <!-- <div class="card">
     <div class="card-body">
       <h5 class="card-title">Your Details</h5>
       <ul class="list-group list-group-flush">
@@ -148,13 +148,12 @@
         <li class="list-group-item"><strong>Phone Number:</strong> <%= user.phoneNumber %></li>
       </ul>
     </div>
-  </div>
+  </div> -->
   <br>
               <br>
               <a href="/student/profile" target="_blank">Update Profile Now</a>
               <br>
               <br>
-              <% } %>
               
           
               <button type="submit" class="btn btn-success mt-3">Register Now</button>

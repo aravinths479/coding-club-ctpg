@@ -11,11 +11,10 @@ const {
   forwardAuthenticated,
   ensureAuthenticated,
   isFaculty,
-  isStudent,
 } = require("../config/auth");
 
 // Login Page
-router.get("/login", forwardAuthenticated, (req, res) => res.render("login"));
+router.get("/login", forwardAuthenticated, (req, res) => res.render("login",{message:""}));
 
 // Register Page
 router.get("/register", forwardAuthenticated, (req, res) =>
@@ -181,11 +180,11 @@ router.get(
   isFaculty,
   async (req, res) => {
     try {
-      const firstYear = await Student.find({ year: 1 });
-      const secondYear = await Student.find({ year: 2 });
-      const thirdYear = await Student.find({ year: 3 });
-      const fourthYear = await Student.find({ year: 4 });
-      const fifthYear = await Student.find({ year: 5 });
+      const firstYear = await Student.find({ year: 1 }).sort({ name: 'asc' });
+      const secondYear = await Student.find({ year: 2 }).sort({ name: 'asc' });
+      const thirdYear = await Student.find({ year: 3 }).sort({ name: 'asc' });
+      const fourthYear = await Student.find({ year: 4 }).sort({ name: 'asc' });
+      const fifthYear = await Student.find({ year: 5 }).sort({ name: 'asc' });
       console.log(firstYear);
       return res.render("faculty/listStudents", {
         user: req.user,

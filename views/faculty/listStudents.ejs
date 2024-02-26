@@ -1,199 +1,345 @@
 <%- include('partials/facultyNavbar') %>
 
-<h3>First year</h3>
+<div class="container mt-5">
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" id="myTabs" role="tablist">
+    <li class="nav-item">
+      <a
+        class="nav-link active"
+        id="first-year-tab"
+        data-toggle="tab"
+        href="#first-year"
+        role="tab"
+        aria-controls="first-year"
+        aria-selected="true"
+        >First Year</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        id="second-year-tab"
+        data-toggle="tab"
+        href="#second-year"
+        role="tab"
+        aria-controls="second-year"
+        aria-selected="false"
+        >Second Year</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        id="third-year-tab"
+        data-toggle="tab"
+        href="#third-year"
+        role="tab"
+        aria-controls="third-year"
+        aria-selected="false"
+        >Third Year</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        id="fourth-year-tab"
+        data-toggle="tab"
+        href="#fourth-year"
+        role="tab"
+        aria-controls="fourth-year"
+        aria-selected="false"
+        >Fourth Year</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        id="fifth-year-tab"
+        data-toggle="tab"
+        href="#fifth-year"
+        role="tab"
+        aria-controls="fifth-year"
+        aria-selected="false"
+        >Fifth Year</a
+      >
+    </li>
+  </ul>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Year</th>
-      <th>Roll Number</th>
-      <th>Phone Number</th>
-      <th>Leetcode Id</th>
-      <th>GitHub</th>
-      <th>View Photo</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% firstYear.forEach(item => { %>
-    <tr>
-      <td><%= item.name %></td>
-      <td><%= item.email %></td>
-      <td><%= item.year %></td>
-      <td><%= item.rollNumber %></td>
-      <td><%= item.phoneNumber %></td>
-      <td><%= item.leetcodeId %></td>
-      <td><%= item.gitHub %></td>
-      <td>
-        <a
-          href="https://results.kongu.edu/Photos/<%= item.rollNumber %>.jpg"
-          target="_blank"
-          >Click to View the Photo</a
-        >
-      </td>
-    </tr>
-    <% }); %>
-  </tbody>
-</table>
-
-<br /><br />
-
-<h3>Second year</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Year</th>
-      <th>Roll Number</th>
-      <th>Phone Number</th>
-      <th>Leetcode Id</th>
-      <th>GitHub</th>
-      <th>View Photo</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% secondYear.forEach(item => { %>
-    <tr>
-      <td><%= item.name %></td>
-      <td><%= item.email %></td>
-      <td><%= item.year %></td>
-      <td><%= item.rollNumber %></td>
-      <td><%= item.phoneNumber %></td>
-      <td><%= item.leetcodeId %></td>
-      <td><%= item.gitHub %></td>
-      <td>
-        <a
-          href="https://results.kongu.edu/Photos/<%= item.rollNumber %>.jpg"
-          target="_blank"
-          >Click to View the Photo</a
-        >
-      </td>
-    </tr>
-    <% }); %>
-  </tbody>
-</table>
-
-<br /><br />
-
-<h3>Third year</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Year</th>
-      <th>Roll Number</th>
-      <th>Phone Number</th>
-      <th>Leetcode Id</th>
-      <th>GitHub</th>
-      <th>View Photo</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% thirdYear.forEach(item => { %>
-    <tr>
-      <td><%= item.name %></td>
-      <td><%= item.email %></td>
-      <td><%= item.year %></td>
-      <td><%= item.rollNumber %></td>
-      <td><%= item.phoneNumber %></td>
-      <td><%= item.leetcodeId %></td>
-      <td><%= item.gitHub %></td>
-      <td>
-        <a href="https://results.kongu.edu/Photos/<%= item.rollNumber %>.JPG"
-          >Click to View the Photo</a
-        >
-      </td>
-    </tr>
-    <% }); %>
-  </tbody>
-</table>
-
-<br /><br />
-
-<h3>Fourth year</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Year</th>
-      <th>Roll Number</th>
-      <th>Phone Number</th>
-      <th>Leetcode Id</th>
-      <th>GitHub</th>
-      <th>View Photo</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% fourthYear.forEach(item => { %>
-    <tr>
-      <td><%= item.name %></td>
-      <td><%= item.email %></td>
-      <td><%= item.year %></td>
-      <td><%= item.rollNumber %></td>
-      <td><%= item.phoneNumber %></td>
-      <td><%= item.leetcodeId %></td>
-      <td><%= item.gitHub %></td>
-      <td>
-        <a href="https://results.kongu.edu/Photos/<%= item.rollNumber %>.JPG"
-          >Click to View the Photo</a
-        >
-      </td>
-    </tr>
-    <% }); %>
-  </tbody>
-</table>
-
-<br /><br />
-
-<h3>Fifth year</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Year</th>
-      <th>Roll Number</th>
-      <th>Phone Number</th>
-      <th>Leetcode Id</th>
-      <th>GitHub</th>
-      <th>View Photo</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% fifthYear.forEach(item => { %>
-    <tr>
-      <td><%= item.name %></td>
-      <td><%= item.email %></td>
-      <td><%= item.year %></td>
-      <td><%= item.rollNumber %></td>
-      <td><%= item.phoneNumber %></td>
-      <td><%= item.leetcodeId %></td>
-      <td><%= item.gitHub %></td>
-      <td>
-        <a
-          href="https://results.kongu.edu/Photos/<%= item.rollNumber %>.jpg"
-          target="_blank"
-          >Click to View the Photo</a
-        >
-      </td>
-    </tr>
-    <% }); %>
-  </tbody>
-</table>
-
-<br /><br />
+  <!-- Tab panes -->
+  <div class="tab-content" id="myTabContent">
+    <!-- First Year Tab -->
+    <div
+      class="tab-pane fade show active"
+      id="first-year"
+      role="tabpanel"
+      aria-labelledby="first-year-tab"
+    >
+      <br />
+      <h3>First Year (<%= firstYear.length %>)</h3>
+      <br />
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Year</th>
+            <th>Roll Number</th>
+            <th>Phone Number</th>
+            <th>Leetcode Id</th>
+            <th>GitHub</th>
+            <th>View Photo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% firstYear.forEach(item => { %>
+          <tr>
+            <td><%= item.name %></td>
+            <td><%= item.email %></td>
+            <td><%= item.year %></td>
+            <td><%= item.rollNumber %></td>
+            <td><%= item.phoneNumber %></td>
+            <td>
+              <a href="<%= item.leetcodeId %>" target="_blank"
+                ><%= item.leetcodeId %></a
+              >
+            </td>
+            <td>
+              <a href="<%= item.gitHub %>" target="_blank"
+                ><%= item.gitHub %></a
+              >
+            </td>
+            <td>
+              <a
+                href="https://results.kongu.edu/Photos/<%= item.rollNumber %>.jpg"
+                target="_blank"
+                >Click to View the Photo</a
+              >
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <div
+      class="tab-pane fade show"
+      id="second-year"
+      role="tabpanel"
+      aria-labelledby="second-year-tab"
+    >
+      <br />
+      <h3>Second Year (<%= secondYear.length %>)</h3>
+      <br />
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Year</th>
+            <th>Roll Number</th>
+            <th>Phone Number</th>
+            <th>Leetcode Id</th>
+            <th>GitHub</th>
+            <th>View Photo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% secondYear.forEach(item => { %>
+          <tr>
+            <td><%= item.name %></td>
+            <td><%= item.email %></td>
+            <td><%= item.year %></td>
+            <td><%= item.rollNumber %></td>
+            <td><%= item.phoneNumber %></td>
+            <td>
+              <a href="<%= item.leetcodeId %>" target="_blank"
+                ><%= item.leetcodeId %></a
+              >
+            </td>
+            <td>
+              <a href="<%= item.gitHub %>" target="_blank"
+                ><%= item.gitHub %></a
+              >
+            </td>
+            <td>
+              <a
+                href="https://results.kongu.edu/Photos/<%= item.rollNumber %>.jpg"
+                target="_blank"
+                >Click to View the Photo</a
+              >
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <div
+      class="tab-pane fade show"
+      id="third-year"
+      role="tabpanel"
+      aria-labelledby="third-year-tab"
+    >
+      <br />
+      <h3>Third Year (<%= secondYear.length %>)</h3>
+      <br />
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Year</th>
+            <th>Roll Number</th>
+            <th>Phone Number</th>
+            <th>Leetcode Id</th>
+            <th>GitHub</th>
+            <th>View Photo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% thirdYear.forEach(item => { %>
+          <tr>
+            <td><%= item.name %></td>
+            <td><%= item.email %></td>
+            <td><%= item.year %></td>
+            <td><%= item.rollNumber %></td>
+            <td><%= item.phoneNumber %></td>
+            <td>
+              <a href="<%= item.leetcodeId %>" target="_blank"
+                ><%= item.leetcodeId %></a
+              >
+            </td>
+            <td>
+              <a href="<%= item.gitHub %>" target="_blank"
+                ><%= item.gitHub %></a
+              >
+            </td>
+            <td>
+              <a
+                href="https://results.kongu.edu/Photos/<%= item.rollNumber %>.jpg"
+                target="_blank"
+                >Click to View the Photo</a
+              >
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <div
+      class="tab-pane fade show"
+      id="fourth-year"
+      role="tabpanel"
+      aria-labelledby="fourth-year-tab"
+    >
+      <br />
+      <h3>Fourth Year (<%= fourthYear.length %>)</h3>
+      <br />
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Year</th>
+            <th>Roll Number</th>
+            <th>Phone Number</th>
+            <th>Leetcode Id</th>
+            <th>GitHub</th>
+            <th>View Photo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% fourthYear.forEach(item => { %>
+          <tr>
+            <td><%= item.name %></td>
+            <td><%= item.email %></td>
+            <td><%= item.year %></td>
+            <td><%= item.rollNumber %></td>
+            <td><%= item.phoneNumber %></td>
+            <td>
+              <a href="<%= item.leetcodeId %>" target="_blank"
+                ><%= item.leetcodeId %></a
+              >
+            </td>
+            <td>
+              <a href="<%= item.gitHub %>" target="_blank"
+                ><%= item.gitHub %></a
+              >
+            </td>
+            <td>
+              <a
+                href="https://results.kongu.edu/Photos/<%= item.rollNumber %>.jpg"
+                target="_blank"
+                >Click to View the Photo</a
+              >
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <div
+      class="tab-pane fade show"
+      id="fifth-year"
+      role="tabpanel"
+      aria-labelledby="fifth-year-tab"
+    >
+      <br />
+      <h3>Fifth Year (<%= fifthYear.length %>)</h3>
+      <br />
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Year</th>
+            <th>Roll Number</th>
+            <th>Phone Number</th>
+            <th>Leetcode Id</th>
+            <th>GitHub</th>
+            <th>View Photo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% fifthYear.forEach(item => { %>
+          <tr>
+            <td><%= item.name %></td>
+            <td><%= item.email %></td>
+            <td><%= item.year %></td>
+            <td><%= item.rollNumber %></td>
+            <td><%= item.phoneNumber %></td>
+            <td>
+              <a href="<%= item.leetcodeId %>" target="_blank"
+                ><%= item.leetcodeId %></a
+              >
+            </td>
+            <td>
+              <a href="<%= item.gitHub %>" target="_blank"
+                ><%= item.gitHub %></a
+              >
+            </td>
+            <td>
+              <a
+                href="https://results.kongu.edu/Photos/<%= item.rollNumber %>.jpg"
+                target="_blank"
+                >Click to View the Photo</a
+              >
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
 <style>
   th,
   td {
     border: 1px solid black;
   }
+
+  .hover-container {
+    position: relative;
+  }
+
 </style>
+

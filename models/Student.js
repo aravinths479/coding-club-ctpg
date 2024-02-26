@@ -8,15 +8,15 @@ const StudentSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true,
+    required: false,
   },
   name: {
     type: String,
-    required: true,
+    required: false,
   },
   year:{
     type : Number,
-    default : 1
+    default : 0
   },
   rollNumber : {
     type : String,

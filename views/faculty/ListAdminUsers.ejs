@@ -1,35 +1,38 @@
 <%- include('partials/facultyNavbar') %>
 
-
-
-<h2>Listing users</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Email</th>
-      <th>Name</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% users.forEach(user => { %>
-    <tr>
-      <td><%= user.email %></td>
-      <td><%= user.name %></td>
-      <td>
-        <!-- Form to submit user removal -->
-        <form action="/users/remove-user/<%= user._id %>" method="POST">
-          <button type="submit">Remove</button>
-        </form>
-      </td>
-    </tr>
-    <% }); %>
-  </tbody>
-</table>
+<div class="container mt-5">
+  <h2>Listing Admin Level Access Users</h2>
+  <br />
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>Email</th>
+          <th>Name</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.forEach(user => { %>
+        <tr>
+          <td><%= user.email %></td>
+          <td><%= user.name %></td>
+          <td>
+            <!-- Form to submit user removal -->
+            <form action="/users/remove-user/<%= user._id %>" method="POST">
+              <button type="submit" class="btn btn-danger">Remove</button>
+            </form>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <style>
   th,
   td {
-    border: 1px solid black;
+    border: 1px solid rgb(85, 83, 83);
   }
 </style>

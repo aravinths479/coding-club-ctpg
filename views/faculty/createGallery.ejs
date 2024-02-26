@@ -1,0 +1,49 @@
+<%- include('partials/facultyNavbar') %>
+<br />
+
+<div class="container">
+  <br />
+  <%- include('partials/messages') %>
+  <br />
+  <h2>Create Gallery</h2>
+  <form action="/gallery/create-gallery" method="post">
+    <div class="mb-3">
+      <label for="title" class="form-label"
+        >Title <span class="text-danger">*</span></label
+      >
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        name="title"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        class="form-control"
+        id="description"
+        name="description"
+        rows="4"
+      ></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="coverImage" class="form-label"
+        >Select Image<span class="text-danger">*</span></label
+      >
+      <input
+        type="file"
+        class="form-control"
+        id="coverImage"
+        name="coverImage"
+        required
+        multiple
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add to Gallery</button>
+
+    <button type="reset" class="btn btn-secondary">Reset</button>
+  </form>
+</div>
