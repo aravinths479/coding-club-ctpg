@@ -50,7 +50,7 @@ router.post(
 );
 
 router.get("/change-password", ensureAuthenticated, isStudent, (req, res) => {
-  return res.render("faculty/changePassword", { user: req.user });
+  return res.render("student/changePassword", { user: req.user });
 });
 
 router.post(

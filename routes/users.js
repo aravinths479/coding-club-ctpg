@@ -113,7 +113,7 @@ router.get(
   isFaculty,
   async (req, res) => {
     try {
-      const Users = await Faculty.find({});
+      const Users = await Faculty.find({ isAdmin:false});
       console.log(Users);
       return res.render("faculty/ListAdminUsers", {
         user: req.user,

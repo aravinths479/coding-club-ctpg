@@ -18,6 +18,10 @@ const FacultySchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
+  isAdmin : {
+    default : false,
+    type : Boolean
+  },
   date: {
     type: Date,
     default: Date.now,
