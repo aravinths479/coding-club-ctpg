@@ -95,12 +95,14 @@
             
             <div class="container mt-5">
             <h2 class="text-center">Register For Event</h2>
+            <br>
             <form action="/student/register-event/<%= eventId %>" method="POST">
               <% if (isTeam == true) { %>
               <div class="form-group">
                 <label for="teamName">Team Name:</label>
                 <input type="text" class="form-control" id="teamName" name="teamName" required>
               </div>
+              <% } else { %>
               <div id="teamMembersContainer">
                 <div class="team-member">
                   <div class="form-row">
@@ -132,9 +134,9 @@
               <hr>
               <br>
               </div>
-              
+              <% if (isTeam == true) { %>
               <button type="button" id="addTeamMember" class="btn btn-primary mt-3">Add Team Member</button>
-          
+                <% } %>
               <% } %>  
   
   <!-- <div class="card">

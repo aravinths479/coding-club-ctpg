@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand mr-auto" href="/facultyDashboard">The Coding Club</a>
+    <a class="navbar-brand" href="/facultyDashboard">Coding Club</a>
+    <!-- Remove mr-auto class -->
     <button
       class="navbar-toggler"
       type="button"
@@ -14,9 +15,10 @@
     </button>
 
     <div
-      class="collapse navbar-collapse justify-content-center"
+      class="collapse navbar-collapse justify-content-end"
       id="navbarSupportedContent"
     >
+      <!-- Add justify-content-end class -->
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" href="/facultyDashboard">Events</a>
@@ -28,9 +30,10 @@
           <a class="nav-link" href="/users/add-user-by-admin">Add user</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/users/get-all-users"
-            >List Admin Access Users</a
-          >
+          <a class="nav-link" href="/users/change-password">Change Password</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/get-all-users">Admin Access Users</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/users/get-students">Students info</a>
@@ -40,7 +43,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/admin" target="_blank"
-            >Database Administration</a
+            >DB Administration</a
           >
         </li>
       </ul>

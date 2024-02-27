@@ -14,7 +14,9 @@ const {
 } = require("../config/auth");
 
 // Login Page
-router.get("/login", forwardAuthenticated, (req, res) => res.render("login",{message:""}));
+router.get("/login", forwardAuthenticated, (req, res) =>
+  res.render("login", { message: "" })
+);
 
 // Register Page
 router.get("/register", forwardAuthenticated, (req, res) =>
@@ -180,11 +182,11 @@ router.get(
   isFaculty,
   async (req, res) => {
     try {
-      const firstYear = await Student.find({ year: 1 }).sort({ name: 'asc' });
-      const secondYear = await Student.find({ year: 2 }).sort({ name: 'asc' });
-      const thirdYear = await Student.find({ year: 3 }).sort({ name: 'asc' });
-      const fourthYear = await Student.find({ year: 4 }).sort({ name: 'asc' });
-      const fifthYear = await Student.find({ year: 5 }).sort({ name: 'asc' });
+      const firstYear = await Student.find({ year: 1 }).sort({ name: "asc" });
+      const secondYear = await Student.find({ year: 2 }).sort({ name: "asc" });
+      const thirdYear = await Student.find({ year: 3 }).sort({ name: "asc" });
+      const fourthYear = await Student.find({ year: 4 }).sort({ name: "asc" });
+      const fifthYear = await Student.find({ year: 5 }).sort({ name: "asc" });
       console.log(firstYear);
       return res.render("faculty/listStudents", {
         user: req.user,
@@ -196,6 +198,47 @@ router.get(
       });
     } catch (err) {
       console.log(err);
+    }
+  }
+);
+
+router.get("/change-password", ensureAuthenticated, isFaculty, (req, res) => {
+  return res.render("faculty/changePassword", { user: req.user });
+});
+
+router.post(
+  "/change-password",
+  ensureAuthenticated,
+  isFaculty,
+  async (req, res) => {
+    const { newPassword, confirmNewPassword } = req.body;
+    const facultyId = req.user._id;
+
+    try {
+      const faculty = await Faculty.findById(facultyId);
+
+      if (!faculty) {
+        req.flash("err_msg", "faculty not found in Database");
+        return res.redirect("/users/change-password");
+      }
+
+      if (newPassword !== confirmNewPassword) {
+        req.flash("err_msg", "New Passwords do not match");
+        return res.redirect("/users/change-password");
+      }
+
+      // Hash the new password
+      const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+      // Update the student's password
+      faculty.password = hashedPassword;
+      await faculty.save();
+
+      req.flash("success_msg", "New Password Set Successfully");
+      res.redirect("/users/change-password"); // Redirect to profile page after successful password change
+    } catch (error) {
+      console.error("Error changing password:", error);
+      res.status(500).send("Internal Server Error");
     }
   }
 );

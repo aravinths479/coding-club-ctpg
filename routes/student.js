@@ -28,8 +28,9 @@ router.post(
   isStudent,
   async (req, res) => {
     try {
-      const { name, year, rollNumber, phoneNumber, leetcodeId, gitHub } = req.body;
-       
+      const { name, year, rollNumber, phoneNumber, leetcodeId, gitHub } =
+        req.body;
+
       const student = await Student.updateOne(
         { _id: req.user._id },
         { name, year, rollNumber, phoneNumber, leetcodeId, gitHub },
@@ -49,7 +50,7 @@ router.post(
 );
 
 router.get("/change-password", ensureAuthenticated, isStudent, (req, res) => {
-  return res.render("student/changePassword", { user: req.user });
+  return res.render("faculty/changePassword", { user: req.user });
 });
 
 router.post(
@@ -158,25 +159,20 @@ router.post(
       return res.status(404).send("Event not found");
     }
 
+    const teamMembers = req.body.teamMemberName.map((name, index) => ({
+      name: name,
+      rollNo: req.body.teamMemberRollNo[index],
+      year: parseInt(req.body.teamMemberYear[index]),
+      phoneNumber: req.body.teamMemberPhone[index],
+      email: req.body.teamMemberEmail[index],
+    }));
 
-
-
-      const teamMembers = req.body.teamMemberName.map((name, index) => ({
-        name: name,
-        rollNo: req.body.teamMemberRollNo[index],
-        year: parseInt(req.body.teamMemberYear[index]),
-        phoneNumber: req.body.teamMemberPhone[index],
-        email: req.body.teamMemberEmail[index],
-      }));
-
-      const registeredUser = new RegisteredUsers({
-        user: req.user._id,
-        event: eventId,
-        teamName: req.body.teamName,
-        teamMembers: teamMembers,
-      });
-    
-    
+    const registeredUser = new RegisteredUsers({
+      user: req.user._id,
+      event: eventId,
+      teamName: req.body.teamName,
+      teamMembers: teamMembers,
+    });
 
     // Save the registered user data to the database
     registeredUser
