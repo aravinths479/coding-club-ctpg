@@ -102,7 +102,7 @@
                 <label for="teamName">Team Name:</label>
                 <input type="text" class="form-control" id="teamName" name="teamName" required>
               </div>
-              <% } else { %>
+              
               <div id="teamMembersContainer">
                 <div class="team-member">
                   <div class="form-row">
@@ -134,10 +134,44 @@
               <hr>
               <br>
               </div>
-              <% if (isTeam == true) { %>
+              <% } else { %>
+                <div id="teamMembersContainer">
+                  <div class="team-member">
+                    <div class="form-row">
+                      <div class="col">
+                        <label for="teamMemberName">Name:</label>
+                        <input type="text" class="form-control" name="teamMemberName[]" value="<%= user.name %>" required>
+                      </div>
+                      <div class="col">
+                        <label for="teamMemberRollNo">Roll Number:</label>
+                        <input type="text" class="form-control" name="teamMemberRollNo[]" value="<%= user.rollNumber %>" required>
+                      </div>
+                      <div class="col">
+                        <label for="teamMemberYear">Year:</label>
+                        <input type="number" class="form-control" name="teamMemberYear[]" value="<%= user.year %>" required>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col">
+                        <label for="teamMemberPhone">Phone Number:</label>
+                        <input type="text" class="form-control" name="teamMemberPhone[]" value="<%= user.phoneNumber %>" required>
+                      </div>
+                      <div class="col">
+                        <label for="teamMemberEmail">Email:</label>
+                        <input type="email" class="form-control" name="teamMemberEmail[]" value="<%= user.email %>" required>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                <hr>
+                <br>
+                </div>
+               <% } %>   
+
+              <% if (isTeam === true) { %>
               <button type="button" id="addTeamMember" class="btn btn-primary mt-3">Add Team Member</button>
                 <% } %>
-              <% } %>  
+              
   
   <!-- <div class="card">
     <div class="card-body">
