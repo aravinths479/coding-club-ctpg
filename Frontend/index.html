@@ -2,42 +2,139 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coding Club of CT-PG</title>
-    <link rel="shortcut icon" href="./assert/coding-club.png" type="image/x-icon">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        clifford: '#da373d',
-                    }
-                }
-            }
-        }
-    </script>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+	<link rel="shortcut icon" href="./coding-club.png" type="image/x-icon">
+	<link rel="stylesheet" href="./login.css" />
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+	<title>Coding Club of CT-PG</title>
 </head>
 
-<body class="min-h-screen flex items-center bg-gradient-to-br from-purple-200 to-indigo-400">
+<body>
+	<div class="container">
+		<div class="forms-container">
+			<div class="signin-signup">
+				<form action="#" class="sign-in-form">
+					<div class="sign-in-form1">
+						<h2 class="title">Student Login</h2>
+						<div class="input-field">
+							<i class="fas fa-envelope"></i>
+							<input type="email" placeholder="Email" />
+						</div>
+						<div class="input-field">
+							<i class="fas fa-lock"></i>
+							<input type="password" placeholder="Password" />
+						</div>
+						<p>No Account ? <a class="ctxt ssubtn" href="">Register</a></p>
+						<input type="submit" value="Login" class="btn solid" />
+					</div>
 
-    <div class="max-w-3xl mx-auto px-8 sm:px-0">
-        <div class="sm:w-7/12 sm:mx-auto">
-            <div role="tablist" aria-label="tabs"
-                class="relative w-max mx-auto h-12 grid grid-cols-3 overflow-hidden shadow-2xl px-[3xl] rounded-full bg-gray-900/20 items-center transition">
-                <button role="tab" aria-selected="true" aria-controls="panel-1" id="tab-1" tabindex="0"
-                    class="relative block h-10 px-6 tab rounded-full">
-                    <span class="text-gray-800">Student Login</span>
-                </button>
-                <button role="tab" aria-selected="true" aria-controls="panel-1" id="tab-1" tabindex="0"
-                    class="relative block h-10 px-6 tab rounded-full">
-                    <span class="text-gray-800">Faculty Login</span>
-                </button>
-            </div>
-        </div>
-    </div>
+					<!--  -->
+					<div class="sReg-form" style="display: none;">
+						<h2 class="title">Student SignUp</h2>
+						<div class="input-field">
+							<i class="fas fa-user"></i>
+							<input type="text" placeholder="Name" />
+						</div>
+						<div class="input-field">
+							<i class="fas fa-envelope"></i>
+							<input type="email" placeholder="Email" />
+						</div>
+						<div class="input-field">
+							<i class="fas fa-lock"></i>
+							<input type="password" placeholder="Password" />
+						</div>
+						<div class="input-field">
+							<i class="fas fa-lock"></i>
+							<input type="password" placeholder="Confirm Password" />
+						</div>
+						<p>Already have an Account ? <a class="ctxt lsubtn" href="">Login</a></p>
+						<input type="submit" value="SignUp" class="btn solid" />
+
+					</div>
+
+				</form>
+
+				<form action="#" class="sign-up-form">
+					<div class="sign-up-form1">
+						<h2 class="title">Faculty Login</h2>
+						<div class="input-field">
+							<i class="fas fa-envelope"></i>
+							<input type="email" placeholder="Email" />
+						</div>
+						<div class="input-field">
+							<i class="fas fa-lock"></i>
+							<input type="password" placeholder="Password" />
+						</div>
+						<p>No Account ? <a class="ctxt fsubtn" href="">Register</a></p>
+						<input type="submit" value="Login" class="btn solid" />
+					</div>
+
+					<!--  -->
+					<div class="fReg-form" style="display: none;">
+						<h2 class="title">Faculty SignUp</h2>
+						<div class="input-field">
+							<i class="fas fa-user"></i>
+							<input type="text" placeholder="Name" />
+						</div>
+						<div class="input-field">
+							<i class="fas fa-envelope"></i>
+							<input type="email" placeholder="Email" />
+						</div>
+						<div class="input-field">
+							<i class="fas fa-lock"></i>
+							<input type="password" placeholder="Password" />
+						</div>
+						<div class="input-field">
+							<i class="fas fa-lock"></i>
+							<input type="password" placeholder="Confirm Password" />
+						</div>
+						<p>Already have an Account ? <a class="ctxt flsubtn" href="">Login</a></p>
+						<input type="submit" value="SignUp" class="btn solid" />
+
+					</div>
+
+
+				</form>
+			</div>
+		</div>
+
+		<div class="panels-container">
+			<div class="panel left-panel">
+				<div class="content">
+					<h3>Space for Faculty Login !</h3>
+					<p>
+						If you are an faculty please click here for your panel
+					</p>
+					<button class="btn transparent" id="sign-up-btn">
+						Login
+					</button>
+				</div>
+				<img src="https://i.ibb.co/6HXL6q1/Privacy-policy-rafiki.png" class="image" alt="" />
+			</div>
+			<div class="panel right-panel">
+				<div class="content">
+					<h3>Space for Student Login !</h3>
+					<p>
+						If you are an Student please click here for your panel
+					</p>
+					<button class="btn transparent" id="sign-in-btn">
+						Login
+					</button>
+				</div>
+				<img src="https://i.ibb.co/nP8H853/Mobile-login-rafiki.png" class="image" alt="" />
+			</div>
+		</div>
+	</div>
+
+	<script src="app.js"></script>
+</body>
+
+</html>
+<!-- partial -->
+<script src="./script.js"></script>
 
 </body>
 
