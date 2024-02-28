@@ -8,9 +8,19 @@ const {
 } = require("../config/auth");
 
 const Event = require("../models/Event");
+const Gallery = require('../models/Gallery')
 
 // Welcome Page
-router.get("/", forwardAuthenticated, (req, res) => res.render("welcome"));
+router.get("/", forwardAuthenticated, (req,res)=>{
+    Gallery.find({})
+      .then((data)=>{
+        console.log(data);
+        res.render('welcome',{gallery:data})
+      })
+      .catch((err)=>{
+        console.log(err);
+      })  
+});
 
 // Dashboard
 router.get(
@@ -49,6 +59,7 @@ router.get(
     }
   }
 );
+
 
 router.get(
   "/studentDashboard",

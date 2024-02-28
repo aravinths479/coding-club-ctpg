@@ -3,6 +3,7 @@ const { DateTime } = require("luxon");
 const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
 const multer = require("multer");
 const uuid = require("uuid");
+const mailService = require("../services/mailService");
 
 const router = express.Router();
 const {
@@ -13,6 +14,7 @@ const {
 
 const Event = require("../models/Event");
 const RegisteredUsers = require("../models/RegisteredUsers");
+const Student = require("../models/Student");
 
 // Welcome Page
 router.get("/create-event", ensureAuthenticated, isFaculty, (req, res) =>
@@ -160,6 +162,38 @@ router.post(
         documents: documentUrls,
         allowResponse: allowResponseBool,
       });
+
+      // sending mails
+      try {
+        const emailsData = await Student.find({}).select("email");
+        const emails = emailsData.map((item) => item.email);
+
+        for (const email of emails) {
+          try {
+            await mailService.sendEmail(
+              email,
+              "Test email - New Event Alert",
+              title,
+              `
+                    <h2>Event Details:</h2>
+                    <p><strong>Title:</strong> ${title}</p>
+                    <p><strong>Description:</strong> ${description}</p>
+                    <p><strong>Team:</strong> ${team ? "Yes" : "No"}</p>
+                    <p><strong>Team Min Size:</strong> ${teamMinSize}</p>
+                    <p><strong>Team Max Size:</strong> ${teamMaxSize}</p>
+                    <p><strong>Event Start Date:</strong> ${eventStartDate}</p>
+                    <p><strong>Event End Date:</strong> ${eventEndDate}</p>
+                    <p><strong>Contact:</strong> ${contact}</p>
+                    `
+            );
+            console.log(`Email sent successfully to: ${email}`);
+          } catch (error) {
+            console.error(`Error sending email to ${email}:`, error);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching student data:", error);
+      }
 
       req.flash("success_msg", "Event Created Sucessfully");
       return res.redirect("/event/create-event");

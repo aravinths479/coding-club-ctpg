@@ -11,7 +11,7 @@ const gallerySchema = new mongoose.Schema({
         required : false
     },
     coverImage: {
-        type: [String],
+        type: String,
         required : true,
     },
     createdAt: {

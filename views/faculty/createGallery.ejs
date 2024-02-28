@@ -6,7 +6,11 @@
   <%- include('partials/messages') %>
   <br />
   <h2>Create Gallery</h2>
-  <form action="/gallery/create-gallery" method="post">
+  <form
+    action="/gallery/create-gallery"
+    method="post"
+    enctype="multipart/form-data"
+  >
     <div class="mb-3">
       <label for="title" class="form-label"
         >Title <span class="text-danger">*</span></label

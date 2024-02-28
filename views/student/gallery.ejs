@@ -1,73 +1,111 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="/">Coding Club</a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarNav"
-    aria-controls="navbarNav"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link navbar-login-link" href="/users/login">Login</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-<!-- navbar style -->
-<style>
-  .navbar-brand {
-    font-weight: bold;
-  }
-</style>
-
 <section>
   <div class="container">
     <div class="carousel">
-      <% gallery.forEach((item, index) => { %> <input type="radio" name="slides"
-      <%= index === 0 ? 'checked="checked"' : '' %> id="slide-<%= index + 1 %>"
-      /> <% }); %>
+      <input type="radio" name="slides" checked="checked" id="slide-1" />
+      <input type="radio" name="slides" id="slide-2" />
+      <input type="radio" name="slides" id="slide-3" />
+      <input type="radio" name="slides" id="slide-4" />
+      <input type="radio" name="slides" id="slide-5" />
+      <input type="radio" name="slides" id="slide-6" />
       <ul class="carousel__slides">
-        <% gallery.forEach((item, index) => { %>
         <li class="carousel__slide">
           <figure>
             <div>
-              <img
-                src="<%= item.coverImage %>"
-                alt="<%= item.title %>"
-                width="800"
-                height="450"
-                class="responsive-image"
-              />
+              <img src="https://picsum.photos/id/1041/800/450" alt="" />
             </div>
             <figcaption>
-              <strong><%= item.title %></strong><br />
-              <%= item.description %>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              <span class="credit">Photo: Tim Marshall</span>
             </figcaption>
           </figure>
         </li>
-        <% }); %>
+        <li class="carousel__slide">
+          <figure>
+            <div>
+              <img src="https://picsum.photos/id/1043/800/450" alt="" />
+            </div>
+            <figcaption>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              <span class="credit">Photo: Christian Joudrey</span>
+            </figcaption>
+          </figure>
+        </li>
+        <li class="carousel__slide">
+          <figure>
+            <div>
+              <img src="https://picsum.photos/id/1044/800/450" alt="" />
+            </div>
+            <figcaption>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              <span class="credit">Photo: Steve Carter</span>
+            </figcaption>
+          </figure>
+        </li>
+        <li class="carousel__slide">
+          <figure>
+            <div>
+              <img src="https://picsum.photos/id/1045/800/450" alt="" />
+            </div>
+            <figcaption>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              <span class="credit">Photo: Aleksandra Boguslawska</span>
+            </figcaption>
+          </figure>
+        </li>
+        <li class="carousel__slide">
+          <figure>
+            <div>
+              <img src="https://picsum.photos/id/1049/800/450" alt="" />
+            </div>
+            <figcaption>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              <span class="credit">Photo: Rosan Harmens</span>
+            </figcaption>
+          </figure>
+        </li>
+        <li class="carousel__slide">
+          <figure>
+            <div>
+              <img src="https://picsum.photos/id/1052/800/450" alt="" />
+            </div>
+            <figcaption>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              <span class="credit">Photo: Annie Spratt</span>
+            </figcaption>
+          </figure>
+        </li>
       </ul>
       <ul class="carousel__thumbnails">
-        <% gallery.forEach((item, index) => { %>
         <li>
-          <label for="slide-<%= index + 1 %>">
-            <img
-              src="<%= item.coverImage %>"
-              alt="<%= item.title %>"
-              width="150"
-              height="150"
-              class="thumbnail responsive-image"
-            />
-          </label>
+          <label for="slide-1"
+            ><img src="https://picsum.photos/id/1041/150/150" alt=""
+          /></label>
         </li>
-        <% }); %>
+        <li>
+          <label for="slide-2"
+            ><img src="https://picsum.photos/id/1043/150/150" alt=""
+          /></label>
+        </li>
+        <li>
+          <label for="slide-3"
+            ><img src="https://picsum.photos/id/1044/150/150" alt=""
+          /></label>
+        </li>
+        <li>
+          <label for="slide-4"
+            ><img src="https://picsum.photos/id/1045/150/150" alt=""
+          /></label>
+        </li>
+        <li>
+          <label for="slide-5"
+            ><img src="https://picsum.photos/id/1049/150/150" alt=""
+          /></label>
+        </li>
+        <li>
+          <label for="slide-6"
+            ><img src="https://picsum.photos/id/1052/150/150" alt=""
+          /></label>
+        </li>
       </ul>
     </div>
   </div>

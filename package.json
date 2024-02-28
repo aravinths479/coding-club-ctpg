@@ -13,6 +13,7 @@
   "dependencies": {
     "@admin-bro/express": "^3.1.0",
     "@aws-sdk/client-s3": "^3.515.0",
+    "@aws-sdk/client-ses": "^3.523.0",
     "admin-bro": "^4.0.1",
     "admin-bro-mongoose": "^0.5.2",
     "bcryptjs": "^2.4.3",
@@ -26,6 +27,7 @@
     "luxon": "^3.4.4",
     "mongoose": "^5.7.5",
     "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.10",
     "passport": "^0.4.0",
     "passport-google-oauth2": "^0.2.0",
     "passport-local": "^1.0.0",

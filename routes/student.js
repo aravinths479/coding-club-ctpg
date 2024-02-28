@@ -114,7 +114,7 @@ router.get(
         isRegistered = true;
       }
 
-      // If the user is not already registered, proceed with rendering the registration page
+
       const event = await Event.findById(eventId);
 
       if (!event) {
@@ -189,6 +189,7 @@ router.post(
 );
 
 router.get("/my-events", ensureAuthenticated, isStudent, async (req, res) => {
+
   try {
     const registerdEvents = await RegisteredUsers.find({
       user: req.user._id,
