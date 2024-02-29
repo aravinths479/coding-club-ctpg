@@ -74,11 +74,12 @@ const Faculty = require("./models/Faculty");
 const Event = require("./models/Event.js");
 const RegisteredUsers = require("./models/RegisteredUsers.js");
 const Gallery = require("./models/Gallery.js");
+const Blogs = require("./models/BlogPost.js")
 
 AdminBro.registerAdapter(AdminBroMongoose);
 
 const admin = new AdminBro({
-  resources: [Student, Faculty, Event, RegisteredUsers, Gallery],
+  resources: [Student, Faculty, Event, RegisteredUsers, Gallery,Blogs],
   rootPath: "/admin",
 });
 
@@ -91,6 +92,7 @@ app.use("/users", require("./routes/users.js"));
 app.use("/event", require("./routes/event.js"));
 app.use("/student", require("./routes/student.js"));
 app.use("/gallery", require("./routes/gallery.js"));
+app.use("/blogs",require("./routes/blogs.js"))
 
 app.get(
   "/auth/google/student",

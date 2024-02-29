@@ -1,5 +1,7 @@
-<br />
-<br />
+<%- include('loginNavbar') %>
+
+<br /><br /><br /><br />
+
 <div class="container">
   <center>
     <%- include ("./partials/messages"); %> <% if (message.length > 0) { %>
@@ -7,6 +9,7 @@
     <% } %>
   </center>
   <div class="row">
+    
     <div class="col-md-6">
       <div class="card shadow p-5">
         <div class="card-header text-center font-weight-bold">
@@ -21,7 +24,6 @@
                 class="form-control"
                 id="studentEmail"
                 name="email"
-                
                 placeholder="Enter @kongu.edu email"
                 required
               />
@@ -32,7 +34,6 @@
                 type="password"
                 class="form-control"
                 name="password"
-           
                 id="studentPassword"
                 required
               />
@@ -75,7 +76,6 @@
                 type="email"
                 class="form-control"
                 id="studentEmail"
-          
                 placeholder="Enter email"
                 name="email"
                 required

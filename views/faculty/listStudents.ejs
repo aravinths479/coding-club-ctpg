@@ -1,7 +1,7 @@
-<%- include('partials/facultyNavbar') %>
+<%- include('partials/facultyNavbar') %> <br /><br /><br />
+<%- include('../partials/goBackButton') %>
 
 <div class="container mt-5">
-  <!-- Nav tabs -->
   <ul class="nav nav-tabs" id="myTabs" role="tablist">
     <li class="nav-item">
       <a
@@ -65,9 +65,7 @@
     </li>
   </ul>
 
-  <!-- Tab panes -->
   <div class="tab-content" id="myTabContent">
-    <!-- First Year Tab -->
     <div
       class="tab-pane fade show active"
       id="first-year"
@@ -179,7 +177,7 @@
       aria-labelledby="third-year-tab"
     >
       <br />
-      <h3>Third Year (<%= secondYear.length %>)</h3>
+      <h3>Third Year (<%= thirdYear.length %>)</h3>
       <br />
       <table class="table table-bordered">
         <thead class="thead-dark">
@@ -224,6 +222,7 @@
         </tbody>
       </table>
     </div>
+
     <div
       class="tab-pane fade show"
       id="fourth-year"
@@ -233,48 +232,50 @@
       <br />
       <h3>Fourth Year (<%= fourthYear.length %>)</h3>
       <br />
-      <table class="table table-bordered">
-        <thead class="thead-dark">
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Year</th>
-            <th>Roll Number</th>
-            <th>Phone Number</th>
-            <th>Leetcode Id</th>
-            <th>GitHub</th>
-            <th>View Photo</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% fourthYear.forEach(item => { %>
-          <tr>
-            <td><%= item.name %></td>
-            <td><%= item.email %></td>
-            <td><%= item.year %></td>
-            <td><%= item.rollNumber %></td>
-            <td><%= item.phoneNumber %></td>
-            <td>
-              <a href="<%= item.leetcodeId %>" target="_blank"
-                ><%= item.leetcodeId %></a
-              >
-            </td>
-            <td>
-              <a href="<%= item.gitHub %>" target="_blank"
-                ><%= item.gitHub %></a
-              >
-            </td>
-            <td>
-              <a
-                href="https://results.kongu.edu/Photos/<%= item.rollNumber %>.jpg"
-                target="_blank"
-                >Click</a
-              >
-            </td>
-          </tr>
-          <% }); %>
-        </tbody>
-      </table>
+      <div class="container">
+        <table class="table table-bordered">
+          <thead class="thead-dark">
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Year</th>
+              <th>Roll Number</th>
+              <th>Phone Number</th>
+              <th>Leetcode Id</th>
+              <th>GitHub</th>
+              <th>View Photo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% fourthYear.forEach(item => { %>
+            <tr>
+              <td><%= item.name %></td>
+              <td><%= item.email %></td>
+              <td><%= item.year %></td>
+              <td><%= item.rollNumber %></td>
+              <td><%= item.phoneNumber %></td>
+              <td>
+                <a href="<%= item.leetcodeId %>" target="_blank"
+                  ><%= item.leetcodeId %></a
+                >
+              </td>
+              <td>
+                <a href="<%= item.gitHub %>" target="_blank"
+                  ><%= item.gitHub %></a
+                >
+              </td>
+              <td>
+                <a
+                  href="https://results.kongu.edu/Photos/<%= item.rollNumber %>.jpg"
+                  target="_blank"
+                  >Click</a
+                >
+              </td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div
       class="tab-pane fade show"
@@ -341,5 +342,13 @@
     position: relative;
   }
 
-</style>
+  .table {
+    width: 75%; /* Adjust the width as needed */
+    font-size: 14px; /* Reduce font size */
+  }
 
+  .table th,
+  .table td {
+    padding: 5px; /* Adjust padding as needed */
+  }
+</style>

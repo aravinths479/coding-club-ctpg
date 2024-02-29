@@ -1,7 +1,7 @@
 <header class="header">
   <nav class="nav container">
     <div class="nav__data">
-      <a href="/facultyDashboard" class="nav__logo">
+      <a href="/studentDashboard" class="nav__logo">
         <i class="ri-code-s-slash-line"></i> Coding Club
       </a>
 
@@ -14,86 +14,15 @@
     <!--=============== NAV MENU ===============-->
     <div class="nav__menu" id="nav-menu">
       <ul class="nav__list">
-        <!--=============== DROPDOWN 1 ===============-->
-        <li class="dropdown__item">
-          <div class="nav__link">
-            Events <i class="ri-arrow-down-s-line dropdown__arrow"></i>
-          </div>
-
-          <ul class="dropdown__menu">
-            <li>
-              <a href="/facultyDashboard" class="dropdown__link">
-                <i class="ri-file-list-line"></i> List Events
-              </a>
-            </li>
-
-            <li>
-              <a href="event/create-event" class="dropdown__link">
-                <i class="ri-file-add-line"></i> Create Event
-              </a>
-            </li>
-          </ul>
-        </li>
-
-        <!--=============== DROPDOWN 1 ===============-->
-        <li class="dropdown__item">
-          <div class="nav__link">
-            Access Control <i class="ri-arrow-down-s-line dropdown__arrow"></i>
-          </div>
-
-          <ul class="dropdown__menu">
-            <li>
-              <a href="/users/add-user-by-admin" class="dropdown__link">
-                <i class="ri-file-add-line"></i>Add User
-              </a>
-            </li>
-
-            <li>
-              <a href="/users/get-all-users" class="dropdown__link">
-                <i class="ri-file-add-line"></i> List Users
-              </a>
-            </li>
-          </ul>
-        </li>
-
         <li>
-          <a href="/users/get-students" class="nav__link">Students info</a>
-        </li>
-        <li>
-          <a href="/gallery/create-gallery" class="nav__link">Gallery</a>
-        </li>
-
-        <!--=============== DROPDOWN 2 ===============-->
-        <li class="dropdown__item">
-          <div class="nav__link">
-            <%= user.email %>
-            <i class="ri-arrow-down-s-line dropdown__arrow"></i>
-          </div>
-
-          <ul class="dropdown__menu">
-            <li>
-              <a href="/admin" class="dropdown__link" target="_blank">
-                <i class="ri-database-2-line"></i> Database Adminstartion
-              </a>
-            </li>
-
-            <li>
-              <a href="/users/change-password" class="dropdown__link">
-                <i class="ri-pass-valid-line"></i> Change Password
-              </a>
-            </li>
-
-            <li>
-              <a href="/users/logout" class="dropdown__link">
-                <i class="ri-logout-box-line"></i>Logout
-              </a>
-            </li>
-          </ul>
+          <a href="/" class="nav__link">Gallery</a>
         </li>
       </ul>
     </div>
   </nav>
 </header>
+
+<br />
 
 <style>
   /*=============== GOOGLE FONTS ===============*/
