@@ -173,6 +173,7 @@ router.post(
       teamName: req.body.teamName,
       teamMembers: teamMembers,
     });
+    
 
     // Save the registered user data to the database
     registeredUser
