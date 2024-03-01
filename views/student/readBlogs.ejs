@@ -1,4 +1,5 @@
 <%- include('partials/studentNavbar') %> <br /><br />
+<%- include('../partials/goBackButton') %>
 
 <section class="title container">
   <div class="row">
@@ -14,6 +15,10 @@
     <div class="col-md-6 item">
       <div class="item-in">
         <h4><%= blog.title %></h4>
+        <h6>
+          <%= blog.createdAt.toLocaleDateString('en-US', { weekday: 'long',
+          year: 'numeric', month: 'long', day: 'numeric' }) %>
+        </h6>
         <div class="seperator"></div>
         <!-- Use a unique ID for each blog content -->
         <p class="blog-content"><%= blog.sanitizedHtml %></p>

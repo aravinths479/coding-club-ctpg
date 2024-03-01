@@ -1,895 +1,874 @@
+<header class="header">
+  <nav class="nav container">
+    <div class="nav__data">
+      <a href="/studentDashboard" class="nav__logo">
+        <i class="ri-code-s-slash-line"></i> Coding Club
+      </a>
 
-    <header class="header">
-      <nav class="nav container">
-        <div class="nav__data">
-          <a href="/studentDashboard" class="nav__logo">
-            <i class="ri-code-s-slash-line"></i> Coding Club
-          </a>
-
-          <div class="nav__toggle" id="nav-toggle">
-            <i class="ri-menu-line nav__burger"></i>
-            <i class="ri-close-line nav__close"></i>
-          </div>
-        </div>
-
-        <!--=============== NAV MENU ===============-->
-        <div class="nav__menu" id="nav-menu">
-          <ul class="nav__list">
-            <li>
-              <a href="/users/login" class="nav__link">Login</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </header>
-
-    <br />
-
-    <style>
-      /*=============== GOOGLE FONTS ===============*/
-      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
-
-      /*=============== VARIABLES CSS ===============*/
-      :root {
-        --header-height: 3.5rem;
-
-        /*========== Colors ==========*/
-        /*Color mode HSL(hue, saturation, lightness)*/
-        --black-color: hsl(0, 0%, 0%);
-        --black-color-light: hsl(300, 7%, 3%);
-        --black-color-lighten: hsl(0, 0%, 2%);
-        --white-color: #fff;
-        --body-color: hsl(220, 100%, 97%);
-
-        /*========== Font and typography ==========*/
-        /*.5rem = 8px | 1rem = 16px ...*/
-        --body-font: "Montserrat", sans-serif;
-        --normal-font-size: 0.938rem;
-
-        /*========== Font weight ==========*/
-        --font-regular: 400;
-        --font-semi-bold: 600;
-
-        /*========== z index ==========*/
-        --z-tooltip: 10;
-        --z-fixed: 100;
-      }
-
-      /*========== Responsive typography ==========*/
-      @media screen and (min-width: 1024px) {
-        :root {
-          --normal-font-size: 1rem;
-        }
-      }
-
-      /*=============== BASE ===============*/
-      * {
-        box-sizing: border-box;
-        padding: 0;
-        margin: 0;
-      }
-
-      body {
-        font-family: var(--body-font);
-        font-size: var(--normal-font-size);
-        background-color: var(--body-color);
-      }
-
-      ul {
-        list-style: none;
-        /* Color highlighting when pressed on mobile devices */
-        /*-webkit-tap-highlight-color: transparent;*/
-      }
-
-      a {
-        text-decoration: none;
-      }
-
-      /*=============== REUSABLE CSS CLASSES ===============*/
-      .container {
-        max-width: 1120px;
-        margin-inline: 1.5rem;
-      }
-
-      /*=============== HEADER ===============*/
-      .header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: var(--black-color);
-        box-shadow: 0 2px 16px hsla(220, 32%, 8%, 0.3);
-        z-index: var(--z-fixed);
-      }
-
-      /*=============== NAV ===============*/
-      .nav {
-        height: var(--header-height);
-      }
-
-      .nav__logo,
-      .nav__burger,
-      .nav__close {
-        color: var(--white-color);
-      }
-
-      .nav__data {
-        height: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .nav__logo {
-        display: inline-flex;
-        align-items: center;
-        column-gap: 0.25rem;
-        font-weight: var(--font-semi-bold);
-        /* Color highlighting when pressed on mobile devices */
-        /*-webkit-tap-highlight-color: transparent;*/
-      }
-      .nav__logo:hover {
-        text-decoration: none;
-        color: rgb(213, 208, 208);
-      }
-
-      .nav__logo i {
-        font-weight: initial;
-        font-size: 1.25rem;
-      }
-
-      .nav__toggle {
-        position: relative;
-        width: 32px;
-        height: 32px;
-      }
-
-      .nav__burger,
-      .nav__close {
-        position: absolute;
-        width: max-content;
-        height: max-content;
-        inset: 0;
-        margin: auto;
-        font-size: 1.25rem;
-        cursor: pointer;
-        transition: opacity 0.1s, transform 0.4s;
-      }
-
-      .nav__close {
-        opacity: 0;
-      }
-
-      /* Navigation for mobile devices */
-      @media screen and (max-width: 1118px) {
-        .nav__menu {
-          position: absolute;
-          left: 0;
-          top: 2.5rem;
-          width: 100%;
-          height: calc(100vh - 3.5rem);
-          overflow: auto;
-          pointer-events: none;
-          opacity: 0;
-          transition: top 0.4s, opacity 0.3s;
-        }
-        .nav__menu::-webkit-scrollbar {
-          width: 0;
-        }
-        .nav__list {
-          background-color: var(--black-color);
-          padding-top: 1rem;
-        }
-      }
-
-      .nav__link {
-        color: white;
-        background-color: var(--black-color);
-        font-weight: var(--font-semi-bold);
-        padding: 1.25rem 1.5rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        transition: background-color 0.3s;
-        text-decoration: none;
-      }
-
-      .nav__link:hover {
-        background-color: var(--black-color-light);
-        color: rgb(209, 203, 203);
-        text-decoration: none;
-      }
-
-      /* Show menu */
-      .show-menu {
-        opacity: 1;
-        top: 3.5rem;
-        pointer-events: initial;
-      }
-
-      /* Show icon */
-      .show-icon .nav__burger {
-        opacity: 0;
-        transform: rotate(90deg);
-      }
-      .show-icon .nav__close {
-        opacity: 1;
-        transform: rotate(90deg);
-      }
-
-      /*=============== DROPDOWN ===============*/
-      .dropdown__item {
-        cursor: pointer;
-      }
-
-      .dropdown__arrow {
-        font-size: 1.25rem;
-        font-weight: initial;
-        transition: transform 0.4s;
-      }
-
-      .dropdown__link,
-      .dropdown__sublink {
-        padding: 1.25rem 1.25rem 1.25rem 2.5rem;
-        color: var(--white-color);
-        background-color: var(--black-color-light);
-        display: flex;
-        align-items: center;
-        column-gap: 0.5rem;
-        font-weight: var(--font-semi-bold);
-        transition: background-color 0.3s;
-      }
-
-      .dropdown__link i,
-      .dropdown__sublink i {
-        font-size: 1.25rem;
-        font-weight: initial;
-      }
-
-      .dropdown__link:hover,
-      .dropdown__sublink:hover {
-        background-color: var(--black-color);
-        text-decoration: none;
-        color: rgb(209, 204, 204);
-      }
-
-      .dropdown__menu,
-      .dropdown__submenu {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease-out;
-      }
-
-      /* Show dropdown menu & submenu */
-      .dropdown__item:hover .dropdown__menu,
-      .dropdown__subitem:hover > .dropdown__submenu {
-        max-height: 1000px;
-        transition: max-height 0.4s ease-in;
-      }
-
-      /* Rotate dropdown icon */
-      .dropdown__item:hover .dropdown__arrow {
-        transform: rotate(180deg);
-      }
-
-      /*=============== DROPDOWN SUBMENU ===============*/
-      .dropdown__add {
-        margin-left: auto;
-      }
-
-      .dropdown__sublink {
-        background-color: var(--black-color-lighten);
-      }
-
-      /*=============== BREAKPOINTS ===============*/
-      /* For small devices */
-      @media screen and (max-width: 340px) {
-        .container {
-          margin-inline: 1rem;
-        }
-
-        .nav__link {
-          padding-inline: 1rem;
-        }
-      }
-
-      /* For large devices */
-      @media screen and (min-width: 1118px) {
-        .container {
-          margin-inline: auto;
-        }
-
-        .nav {
-          height: calc(var(--header-height) + 2rem);
-          display: flex;
-          justify-content: space-between;
-        }
-        .nav__toggle {
-          display: none;
-        }
-        .nav__list {
-          height: 100%;
-          display: flex;
-          column-gap: 3rem;
-        }
-        .nav__link {
-          height: 100%;
-          padding: 0;
-          justify-content: initial;
-          column-gap: 0.25rem;
-        }
-        .nav__link:hover {
-          background-color: transparent;
-        }
-
-        .dropdown__item,
-        .dropdown__subitem {
-          position: relative;
-        }
-
-        .dropdown__menu,
-        .dropdown__submenu {
-          max-height: initial;
-          overflow: initial;
-          position: absolute;
-          left: 0;
-          top: 6rem;
-          opacity: 0;
-          pointer-events: none;
-          transition: opacity 0.3s, top 0.3s;
-        }
-
-        .dropdown__link,
-        .dropdown__sublink {
-          padding-inline: 1rem 3.5rem;
-        }
-
-        .dropdown__subitem .dropdown__link {
-          padding-inline: 1rem;
-        }
-
-        .dropdown__submenu {
-          position: absolute;
-          left: 100%;
-          top: 0.5rem;
-        }
-
-        /* Show dropdown menu */
-        .dropdown__item:hover .dropdown__menu {
-          opacity: 1;
-          top: 5.5rem;
-          pointer-events: initial;
-          transition: top 0.3s;
-        }
-
-        /* Show dropdown submenu */
-        .dropdown__subitem:hover > .dropdown__submenu {
-          opacity: 1;
-          top: 0;
-          pointer-events: initial;
-          transition: top 0.3s;
-        }
-      }
-    </style>
-
-    <div class="container-fluid">
-      <div
-        id="carouselExampleCaptions"
-        class="carousel slide"
-        data-ride="carousel"
-      >
-        <div class="carousel-indicators">
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="0"
-            class="active"
-            aria-current="true"
-            aria-label="Slide 1"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="1"
-            aria-label="Slide 2"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="2"
-            aria-label="Slide 3"
-          ></button>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img
-              src="https://plus.unsplash.com/premium_photo-1663954865317-3e2c288cf5be?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8"
-              class="d-block w-100"
-              alt="..."
-            />
-            <div class="carousel-caption">
-              <h5>Title 1</h5>
-              <p>
-                Some representative placeholder content for the first slide.
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Obcaecati,
-              </p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img
-              src="https://plus.unsplash.com/premium_photo-1663954865317-3e2c288cf5be?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8"
-              class="d-block w-100"
-              alt="..."
-            />
-            <div class="carousel-caption">
-              <h5>Title 2</h5>
-              <p>
-                Some representative placeholder content for the second slide.
-              </p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img
-              src="https://plus.unsplash.com/premium_photo-1663954865317-3e2c288cf5be?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8"
-              class="d-block w-100"
-              alt="..."
-            />
-            <div class="carousel-caption">
-              <h5>Title 3</h5>
-              <p>
-                Some representative placeholder content for the third slide.
-              </p>
-            </div>
-          </div>
-        </div>
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+      <div class="nav__toggle" id="nav-toggle">
+        <i class="ri-menu-line nav__burger"></i>
+        <i class="ri-close-line nav__close"></i>
       </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!--=============== NAV MENU ===============-->
+    <div class="nav__menu" id="nav-menu">
+      <ul class="nav__list">
+        <li>
+          <a href="/users/login" class="nav__link">Login</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
 
-    <style>
-      /* Custom styles */
-      html,
-      body {
-        height: 98%;
-        margin: 0;
-        padding: 0;
-      }
-      img {
-        border-radius: 5px;
-      }
+<br />
 
-      .container-fluid {
-        height: 98%;
-        padding-top: 56px; /* Adjust according to the height of the navbar */
-        margin-top: 20px; /* Add margin to create space between navbar and carousel */
-      }
-      .carousel {
-        width: 100%;
-        height: 98%;
-      }
+<style>
+  /*=============== GOOGLE FONTS ===============*/
+  @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
 
-      .carousel-inner {
-        height: 98%;
-      }
+  /*=============== VARIABLES CSS ===============*/
+  :root {
+    --header-height: 3.5rem;
 
-      .carousel-item {
-        height: 98%;
-      }
+    /*========== Colors ==========*/
+    /*Color mode HSL(hue, saturation, lightness)*/
+    --black-color: hsl(0, 0%, 0%);
+    --black-color-light: hsl(300, 7%, 3%);
+    --black-color-lighten: hsl(0, 0%, 2%);
+    --white-color: #fff;
+    --body-color: hsl(220, 100%, 97%);
 
-      .carousel-item > img {
-        object-fit: cover;
-        width: 100%;
-        height: 98%;
-      }
+    /*========== Font and typography ==========*/
+    /*.5rem = 8px | 1rem = 16px ...*/
+    --body-font: "Montserrat", sans-serif;
+    --normal-font-size: 0.938rem;
 
-      .carousel-caption {
-        background-color: rgba(
-          0,
-          0,
-          0,
-          0.5
-        ); /* Semi-transparent black background */
-        color: white; /* White text */
-        position: absolute; /* Position absolutely within the carousel item */
-        bottom: 10; /* Align to the bottom */
-        left: 0; /* Align to the left */
-        width: 100%;
-        padding: 10px; /* Add padding */
-        opacity: 0; /* Initially hidden */
-        transition: opacity 0.3s ease; /* Smooth transition for opacity */
-      }
+    /*========== Font weight ==========*/
+    --font-regular: 400;
+    --font-semi-bold: 600;
 
-      .carousel-caption h5 {
-        margin-bottom: 0; /* Remove default margin */
-      }
+    /*========== z index ==========*/
+    --z-tooltip: 10;
+    --z-fixed: 100;
+  }
 
-      .carousel-item:hover .carousel-caption {
-        opacity: 1; /* Show caption on hover */
-      }
-    </style>
+  /*========== Responsive typography ==========*/
+  @media screen and (min-width: 1024px) {
+    :root {
+      --normal-font-size: 1rem;
+    }
+  }
 
-    <style>
-      /*=============== GOOGLE FONTS ===============*/
-      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+  /*=============== BASE ===============*/
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
 
-      /*=============== VARIABLES CSS ===============*/
-      :root {
-        --header-height: 3.5rem;
+  body {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+  }
 
-        /*========== Colors ==========*/
-        /*Color mode HSL(hue, saturation, lightness)*/
-        --black-color: hsl(0, 0%, 0%);
-        --black-color-light: hsl(300, 7%, 3%);
-        --black-color-lighten: hsl(0, 0%, 2%);
-        --white-color: #fff;
-        --body-color: hsl(220, 100%, 97%);
+  ul {
+    list-style: none;
+    /* Color highlighting when pressed on mobile devices */
+    /*-webkit-tap-highlight-color: transparent;*/
+  }
 
-        /*========== Font and typography ==========*/
-        /*.5rem = 8px | 1rem = 16px ...*/
-        --body-font: "Montserrat", sans-serif;
-        --normal-font-size: 0.938rem;
+  a {
+    text-decoration: none;
+  }
 
-        /*========== Font weight ==========*/
-        --font-regular: 400;
-        --font-semi-bold: 600;
+  /*=============== REUSABLE CSS CLASSES ===============*/
+  .container {
+    max-width: 1120px;
+    margin-inline: 1.5rem;
+  }
 
-        /*========== z index ==========*/
-        --z-tooltip: 10;
-        --z-fixed: 100;
-      }
+  /*=============== HEADER ===============*/
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--black-color);
+    box-shadow: 0 2px 16px hsla(220, 32%, 8%, 0.3);
+    z-index: var(--z-fixed);
+  }
 
-      /*========== Responsive typography ==========*/
-      @media screen and (min-width: 1024px) {
-        :root {
-          --normal-font-size: 1rem;
-        }
-      }
+  /*=============== NAV ===============*/
+  .nav {
+    height: var(--header-height);
+  }
 
-      /*=============== BASE ===============*/
-      * {
-        box-sizing: border-box;
-        padding: 0;
-        margin: 0;
-      }
+  .nav__logo,
+  .nav__burger,
+  .nav__close {
+    color: var(--white-color);
+  }
 
-      body {
-        font-family: var(--body-font);
-        font-size: var(--normal-font-size);
-        background-color: var(--body-color);
-      }
+  .nav__data {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-      ul {
-        list-style: none;
-        /* Color highlighting when pressed on mobile devices */
-        /*-webkit-tap-highlight-color: transparent;*/
-      }
+  .nav__logo {
+    display: inline-flex;
+    align-items: center;
+    column-gap: 0.25rem;
+    font-weight: var(--font-semi-bold);
+    /* Color highlighting when pressed on mobile devices */
+    /*-webkit-tap-highlight-color: transparent;*/
+  }
+  .nav__logo:hover {
+    text-decoration: none;
+    color: rgb(213, 208, 208);
+  }
 
-      a {
-        text-decoration: none;
-      }
+  .nav__logo i {
+    font-weight: initial;
+    font-size: 1.25rem;
+  }
 
-      /*=============== REUSABLE CSS CLASSES ===============*/
-      .container {
-        max-width: 1120px;
-        margin-inline: 1.5rem;
-      }
+  .nav__toggle {
+    position: relative;
+    width: 32px;
+    height: 32px;
+  }
 
-      /*=============== HEADER ===============*/
-      .header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: var(--black-color);
-        box-shadow: 0 2px 16px hsla(220, 32%, 8%, 0.3);
-        z-index: var(--z-fixed);
-      }
+  .nav__burger,
+  .nav__close {
+    position: absolute;
+    width: max-content;
+    height: max-content;
+    inset: 0;
+    margin: auto;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: opacity 0.1s, transform 0.4s;
+  }
 
-      /*=============== NAV ===============*/
-      .nav {
-        height: var(--header-height);
-      }
+  .nav__close {
+    opacity: 0;
+  }
 
-      .nav__logo,
-      .nav__burger,
-      .nav__close {
-        color: var(--white-color);
-      }
+  /* Navigation for mobile devices */
+  @media screen and (max-width: 1118px) {
+    .nav__menu {
+      position: absolute;
+      left: 0;
+      top: 2.5rem;
+      width: 100%;
+      height: calc(100vh - 3.5rem);
+      overflow: auto;
+      pointer-events: none;
+      opacity: 0;
+      transition: top 0.4s, opacity 0.3s;
+    }
+    .nav__menu::-webkit-scrollbar {
+      width: 0;
+    }
+    .nav__list {
+      background-color: var(--black-color);
+      padding-top: 1rem;
+    }
+  }
 
-      .nav__data {
-        height: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
+  .nav__link {
+    color: white;
+    background-color: var(--black-color);
+    font-weight: var(--font-semi-bold);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s;
+    text-decoration: none;
+  }
 
-      .nav__logo {
-        display: inline-flex;
-        align-items: center;
-        column-gap: 0.25rem;
-        font-weight: var(--font-semi-bold);
-        /* Color highlighting when pressed on mobile devices */
-        /*-webkit-tap-highlight-color: transparent;*/
-      }
-      .nav__logo:hover {
-        text-decoration: none;
-        color: rgb(213, 208, 208);
-      }
+  .nav__link:hover {
+    background-color: var(--black-color-light);
+    color: rgb(209, 203, 203);
+    text-decoration: none;
+  }
 
-      .nav__logo i {
-        font-weight: initial;
-        font-size: 1.25rem;
-      }
+  /* Show menu */
+  .show-menu {
+    opacity: 1;
+    top: 3.5rem;
+    pointer-events: initial;
+  }
 
-      .nav__toggle {
-        position: relative;
-        width: 32px;
-        height: 32px;
-      }
+  /* Show icon */
+  .show-icon .nav__burger {
+    opacity: 0;
+    transform: rotate(90deg);
+  }
+  .show-icon .nav__close {
+    opacity: 1;
+    transform: rotate(90deg);
+  }
 
-      .nav__burger,
-      .nav__close {
-        position: absolute;
-        width: max-content;
-        height: max-content;
-        inset: 0;
-        margin: auto;
-        font-size: 1.25rem;
-        cursor: pointer;
-        transition: opacity 0.1s, transform 0.4s;
-      }
+  /*=============== DROPDOWN ===============*/
+  .dropdown__item {
+    cursor: pointer;
+  }
 
-      .nav__close {
-        opacity: 0;
-      }
+  .dropdown__arrow {
+    font-size: 1.25rem;
+    font-weight: initial;
+    transition: transform 0.4s;
+  }
 
-      /* Navigation for mobile devices */
-      @media screen and (max-width: 1118px) {
-        .nav__menu {
-          position: absolute;
-          left: 0;
-          top: 2.5rem;
-          width: 100%;
-          height: calc(100vh - 3.5rem);
-          overflow: auto;
-          pointer-events: none;
-          opacity: 0;
-          transition: top 0.4s, opacity 0.3s;
-        }
-        .nav__menu::-webkit-scrollbar {
-          width: 0;
-        }
-        .nav__list {
-          background-color: var(--black-color);
-          padding-top: 1rem;
-        }
-      }
+  .dropdown__link,
+  .dropdown__sublink {
+    padding: 1.25rem 1.25rem 1.25rem 2.5rem;
+    color: var(--white-color);
+    background-color: var(--black-color-light);
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    font-weight: var(--font-semi-bold);
+    transition: background-color 0.3s;
+  }
 
-      .nav__link {
-        color: white;
-        background-color: var(--black-color);
-        font-weight: var(--font-semi-bold);
-        padding: 1.25rem 1.5rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        transition: background-color 0.3s;
-        text-decoration: none;
-      }
+  .dropdown__link i,
+  .dropdown__sublink i {
+    font-size: 1.25rem;
+    font-weight: initial;
+  }
 
-      .nav__link:hover {
-        background-color: var(--black-color-light);
-        color: rgb(209, 203, 203);
-        text-decoration: none;
-      }
+  .dropdown__link:hover,
+  .dropdown__sublink:hover {
+    background-color: var(--black-color);
+    text-decoration: none;
+    color: rgb(209, 204, 204);
+  }
 
-      /* Show menu */
-      .show-menu {
-        opacity: 1;
-        top: 3.5rem;
-        pointer-events: initial;
-      }
+  .dropdown__menu,
+  .dropdown__submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+  }
 
-      /* Show icon */
-      .show-icon .nav__burger {
-        opacity: 0;
-        transform: rotate(90deg);
-      }
-      .show-icon .nav__close {
-        opacity: 1;
-        transform: rotate(90deg);
-      }
+  /* Show dropdown menu & submenu */
+  .dropdown__item:hover .dropdown__menu,
+  .dropdown__subitem:hover > .dropdown__submenu {
+    max-height: 1000px;
+    transition: max-height 0.4s ease-in;
+  }
 
-      /*=============== DROPDOWN ===============*/
-      .dropdown__item {
-        cursor: pointer;
-      }
+  /* Rotate dropdown icon */
+  .dropdown__item:hover .dropdown__arrow {
+    transform: rotate(180deg);
+  }
 
-      .dropdown__arrow {
-        font-size: 1.25rem;
-        font-weight: initial;
-        transition: transform 0.4s;
-      }
+  /*=============== DROPDOWN SUBMENU ===============*/
+  .dropdown__add {
+    margin-left: auto;
+  }
 
-      .dropdown__link,
-      .dropdown__sublink {
-        padding: 1.25rem 1.25rem 1.25rem 2.5rem;
-        color: var(--white-color);
-        background-color: var(--black-color-light);
-        display: flex;
-        align-items: center;
-        column-gap: 0.5rem;
-        font-weight: var(--font-semi-bold);
-        transition: background-color 0.3s;
-      }
+  .dropdown__sublink {
+    background-color: var(--black-color-lighten);
+  }
 
-      .dropdown__link i,
-      .dropdown__sublink i {
-        font-size: 1.25rem;
-        font-weight: initial;
-      }
+  /*=============== BREAKPOINTS ===============*/
+  /* For small devices */
+  @media screen and (max-width: 340px) {
+    .container {
+      margin-inline: 1rem;
+    }
 
-      .dropdown__link:hover,
-      .dropdown__sublink:hover {
-        background-color: var(--black-color);
-        text-decoration: none;
-        color: rgb(209, 204, 204);
-      }
+    .nav__link {
+      padding-inline: 1rem;
+    }
+  }
 
-      .dropdown__menu,
-      .dropdown__submenu {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease-out;
-      }
+  /* For large devices */
+  @media screen and (min-width: 1118px) {
+    .container {
+      margin-inline: auto;
+    }
 
-      /* Show dropdown menu & submenu */
-      .dropdown__item:hover .dropdown__menu,
-      .dropdown__subitem:hover > .dropdown__submenu {
-        max-height: 1000px;
-        transition: max-height 0.4s ease-in;
-      }
+    .nav {
+      height: calc(var(--header-height) + 2rem);
+      display: flex;
+      justify-content: space-between;
+    }
+    .nav__toggle {
+      display: none;
+    }
+    .nav__list {
+      height: 100%;
+      display: flex;
+      column-gap: 3rem;
+    }
+    .nav__link {
+      height: 100%;
+      padding: 0;
+      justify-content: initial;
+      column-gap: 0.25rem;
+    }
+    .nav__link:hover {
+      background-color: transparent;
+    }
 
-      /* Rotate dropdown icon */
-      .dropdown__item:hover .dropdown__arrow {
-        transform: rotate(180deg);
-      }
+    .dropdown__item,
+    .dropdown__subitem {
+      position: relative;
+    }
 
-      /*=============== DROPDOWN SUBMENU ===============*/
-      .dropdown__add {
-        margin-left: auto;
-      }
+    .dropdown__menu,
+    .dropdown__submenu {
+      max-height: initial;
+      overflow: initial;
+      position: absolute;
+      left: 0;
+      top: 6rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, top 0.3s;
+    }
 
-      .dropdown__sublink {
-        background-color: var(--black-color-lighten);
-      }
+    .dropdown__link,
+    .dropdown__sublink {
+      padding-inline: 1rem 3.5rem;
+    }
 
-      /*=============== BREAKPOINTS ===============*/
-      /* For small devices */
-      @media screen and (max-width: 340px) {
-        .container {
-          margin-inline: 1rem;
-        }
+    .dropdown__subitem .dropdown__link {
+      padding-inline: 1rem;
+    }
 
-        .nav__link {
-          padding-inline: 1rem;
-        }
-      }
+    .dropdown__submenu {
+      position: absolute;
+      left: 100%;
+      top: 0.5rem;
+    }
 
-      /* For large devices */
-      @media screen and (min-width: 1118px) {
-        .container {
-          margin-inline: auto;
-        }
+    /* Show dropdown menu */
+    .dropdown__item:hover .dropdown__menu {
+      opacity: 1;
+      top: 5.5rem;
+      pointer-events: initial;
+      transition: top 0.3s;
+    }
 
-        .nav {
-          height: calc(var(--header-height) + 2rem);
-          display: flex;
-          justify-content: space-between;
-        }
-        .nav__toggle {
-          display: none;
-        }
-        .nav__list {
-          height: 100%;
-          display: flex;
-          column-gap: 3rem;
-        }
-        .nav__link {
-          height: 100%;
-          padding: 0;
-          justify-content: initial;
-          column-gap: 0.25rem;
-        }
-        .nav__link:hover {
-          background-color: transparent;
-        }
+    /* Show dropdown submenu */
+    .dropdown__subitem:hover > .dropdown__submenu {
+      opacity: 1;
+      top: 0;
+      pointer-events: initial;
+      transition: top 0.3s;
+    }
+  }
+</style>
 
-        .dropdown__item,
-        .dropdown__subitem {
-          position: relative;
-        }
+<div class="container-fluid">
+  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+    <div class="carousel-indicators">
+      <button
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide-to="0"
+        class="active"
+        aria-current="true"
+        aria-label="Slide 1"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide-to="1"
+        aria-label="Slide 2"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide-to="2"
+        aria-label="Slide 3"
+      ></button>
+    </div>
 
-        .dropdown__menu,
-        .dropdown__submenu {
-          max-height: initial;
-          overflow: initial;
-          position: absolute;
-          left: 0;
-          top: 6rem;
-          opacity: 0;
-          pointer-events: none;
-          transition: opacity 0.3s, top 0.3s;
-        }
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img
+          src="<%= gallery[0].coverImage %>"
+          class="d-block w-100"
+          alt="..."
+        />
+        <div class="carousel-caption">
+          <h5><%= gallery[0].title %></h5>
+          <p><%= gallery[0].description %></p>
+        </div>
+      </div>
+      <% for (let i = 1; i < gallery.length; i++) { %>
+      <div class="carousel-item">
+        <img
+          src="<%= gallery[i].coverImage %>"
+          class="d-block w-100"
+          alt="..."
+        />
+        <div class="carousel-caption">
+          <h5><%= gallery[i].title %></h5>
+          <p><%= gallery[i].description %></p>
+        </div>
+      </div>
+      <% } %>
+      
+    </div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleCaptions"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleCaptions"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
 
-        .dropdown__link,
-        .dropdown__sublink {
-          padding-inline: 1rem 3.5rem;
-        }
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-        .dropdown__subitem .dropdown__link {
-          padding-inline: 1rem;
-        }
+<style>
+  /* Custom styles */
+  html,
+  body {
+    height: 98%;
+    margin: 0;
+    padding: 0;
+  }
+  img {
+    border-radius: 5px;
+  }
 
-        .dropdown__submenu {
-          position: absolute;
-          left: 100%;
-          top: 0.5rem;
-        }
+  .container-fluid {
+    height: 98%;
+    padding-top: 56px; /* Adjust according to the height of the navbar */
+    margin-top: 20px; /* Add margin to create space between navbar and carousel */
+  }
+  .carousel {
+    width: 100%;
+    height: 98%;
+  }
 
-        /* Show dropdown menu */
-        .dropdown__item:hover .dropdown__menu {
-          opacity: 1;
-          top: 5.5rem;
-          pointer-events: initial;
-          transition: top 0.3s;
-        }
+  .carousel-inner {
+    height: 98%;
+  }
 
-        /* Show dropdown submenu */
-        .dropdown__subitem:hover > .dropdown__submenu {
-          opacity: 1;
-          top: 0;
-          pointer-events: initial;
-          transition: top 0.3s;
-        }
-      }
-    </style>
+  .carousel-item {
+    height: 98%;
+  }
 
-    <script>
-      /*=============== SHOW MENU ===============*/
-      const showMenu = (toggleId, navId) => {
-        const toggle = document.getElementById(toggleId),
-          nav = document.getElementById(navId);
+  .carousel-item > img {
+    object-fit: cover;
+    width: 100%;
+    height: 98%;
+  }
 
-        toggle.addEventListener("click", () => {
-          // Add show-menu class to nav menu
-          nav.classList.toggle("show-menu");
+  .carousel-caption {
+    background-color: rgba(
+      0,
+      0,
+      0,
+      0.5
+    ); /* Semi-transparent black background */
+    color: white; /* White text */
+    position: absolute; /* Position absolutely within the carousel item */
+    bottom: 10; /* Align to the bottom */
+    left: 0; /* Align to the left */
+    width: 100%;
+    padding: 10px; /* Add padding */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease; /* Smooth transition for opacity */
+  }
 
-          // Add show-icon to show and hide the menu icon
-          toggle.classList.toggle("show-icon");
-        });
-      };
+  .carousel-caption h5 {
+    margin-bottom: 0; /* Remove default margin */
+  }
 
-      showMenu("nav-toggle", "nav-menu");
-    </script>
+  .carousel-item:hover .carousel-caption {
+    opacity: 1; /* Show caption on hover */
+  }
+</style>
 
+<style>
+  /*=============== GOOGLE FONTS ===============*/
+  @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+
+  /*=============== VARIABLES CSS ===============*/
+  :root {
+    --header-height: 3.5rem;
+
+    /*========== Colors ==========*/
+    /*Color mode HSL(hue, saturation, lightness)*/
+    --black-color: hsl(0, 0%, 0%);
+    --black-color-light: hsl(300, 7%, 3%);
+    --black-color-lighten: hsl(0, 0%, 2%);
+    --white-color: #fff;
+    --body-color: hsl(220, 100%, 97%);
+
+    /*========== Font and typography ==========*/
+    /*.5rem = 8px | 1rem = 16px ...*/
+    --body-font: "Montserrat", sans-serif;
+    --normal-font-size: 0.938rem;
+
+    /*========== Font weight ==========*/
+    --font-regular: 400;
+    --font-semi-bold: 600;
+
+    /*========== z index ==========*/
+    --z-tooltip: 10;
+    --z-fixed: 100;
+  }
+
+  /*========== Responsive typography ==========*/
+  @media screen and (min-width: 1024px) {
+    :root {
+      --normal-font-size: 1rem;
+    }
+  }
+
+  /*=============== BASE ===============*/
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  body {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+  }
+
+  ul {
+    list-style: none;
+    /* Color highlighting when pressed on mobile devices */
+    /*-webkit-tap-highlight-color: transparent;*/
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  /*=============== REUSABLE CSS CLASSES ===============*/
+  .container {
+    max-width: 1120px;
+    margin-inline: 1.5rem;
+  }
+
+  /*=============== HEADER ===============*/
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--black-color);
+    box-shadow: 0 2px 16px hsla(220, 32%, 8%, 0.3);
+    z-index: var(--z-fixed);
+  }
+
+  /*=============== NAV ===============*/
+  .nav {
+    height: var(--header-height);
+  }
+
+  .nav__logo,
+  .nav__burger,
+  .nav__close {
+    color: var(--white-color);
+  }
+
+  .nav__data {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav__logo {
+    display: inline-flex;
+    align-items: center;
+    column-gap: 0.25rem;
+    font-weight: var(--font-semi-bold);
+    /* Color highlighting when pressed on mobile devices */
+    /*-webkit-tap-highlight-color: transparent;*/
+  }
+  .nav__logo:hover {
+    text-decoration: none;
+    color: rgb(213, 208, 208);
+  }
+
+  .nav__logo i {
+    font-weight: initial;
+    font-size: 1.25rem;
+  }
+
+  .nav__toggle {
+    position: relative;
+    width: 32px;
+    height: 32px;
+  }
+
+  .nav__burger,
+  .nav__close {
+    position: absolute;
+    width: max-content;
+    height: max-content;
+    inset: 0;
+    margin: auto;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: opacity 0.1s, transform 0.4s;
+  }
+
+  .nav__close {
+    opacity: 0;
+  }
+
+  /* Navigation for mobile devices */
+  @media screen and (max-width: 1118px) {
+    .nav__menu {
+      position: absolute;
+      left: 0;
+      top: 2.5rem;
+      width: 100%;
+      height: calc(100vh - 3.5rem);
+      overflow: auto;
+      pointer-events: none;
+      opacity: 0;
+      transition: top 0.4s, opacity 0.3s;
+    }
+    .nav__menu::-webkit-scrollbar {
+      width: 0;
+    }
+    .nav__list {
+      background-color: var(--black-color);
+      padding-top: 1rem;
+    }
+  }
+
+  .nav__link {
+    color: white;
+    background-color: var(--black-color);
+    font-weight: var(--font-semi-bold);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s;
+    text-decoration: none;
+  }
+
+  .nav__link:hover {
+    background-color: var(--black-color-light);
+    color: rgb(209, 203, 203);
+    text-decoration: none;
+  }
+
+  /* Show menu */
+  .show-menu {
+    opacity: 1;
+    top: 3.5rem;
+    pointer-events: initial;
+  }
+
+  /* Show icon */
+  .show-icon .nav__burger {
+    opacity: 0;
+    transform: rotate(90deg);
+  }
+  .show-icon .nav__close {
+    opacity: 1;
+    transform: rotate(90deg);
+  }
+
+  /*=============== DROPDOWN ===============*/
+  .dropdown__item {
+    cursor: pointer;
+  }
+
+  .dropdown__arrow {
+    font-size: 1.25rem;
+    font-weight: initial;
+    transition: transform 0.4s;
+  }
+
+  .dropdown__link,
+  .dropdown__sublink {
+    padding: 1.25rem 1.25rem 1.25rem 2.5rem;
+    color: var(--white-color);
+    background-color: var(--black-color-light);
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    font-weight: var(--font-semi-bold);
+    transition: background-color 0.3s;
+  }
+
+  .dropdown__link i,
+  .dropdown__sublink i {
+    font-size: 1.25rem;
+    font-weight: initial;
+  }
+
+  .dropdown__link:hover,
+  .dropdown__sublink:hover {
+    background-color: var(--black-color);
+    text-decoration: none;
+    color: rgb(209, 204, 204);
+  }
+
+  .dropdown__menu,
+  .dropdown__submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+  }
+
+  /* Show dropdown menu & submenu */
+  .dropdown__item:hover .dropdown__menu,
+  .dropdown__subitem:hover > .dropdown__submenu {
+    max-height: 1000px;
+    transition: max-height 0.4s ease-in;
+  }
+
+  /* Rotate dropdown icon */
+  .dropdown__item:hover .dropdown__arrow {
+    transform: rotate(180deg);
+  }
+
+  /*=============== DROPDOWN SUBMENU ===============*/
+  .dropdown__add {
+    margin-left: auto;
+  }
+
+  .dropdown__sublink {
+    background-color: var(--black-color-lighten);
+  }
+
+  /*=============== BREAKPOINTS ===============*/
+  /* For small devices */
+  @media screen and (max-width: 340px) {
+    .container {
+      margin-inline: 1rem;
+    }
+
+    .nav__link {
+      padding-inline: 1rem;
+    }
+  }
+
+  /* For large devices */
+  @media screen and (min-width: 1118px) {
+    .container {
+      margin-inline: auto;
+    }
+
+    .nav {
+      height: calc(var(--header-height) + 2rem);
+      display: flex;
+      justify-content: space-between;
+    }
+    .nav__toggle {
+      display: none;
+    }
+    .nav__list {
+      height: 100%;
+      display: flex;
+      column-gap: 3rem;
+    }
+    .nav__link {
+      height: 100%;
+      padding: 0;
+      justify-content: initial;
+      column-gap: 0.25rem;
+    }
+    .nav__link:hover {
+      background-color: transparent;
+    }
+
+    .dropdown__item,
+    .dropdown__subitem {
+      position: relative;
+    }
+
+    .dropdown__menu,
+    .dropdown__submenu {
+      max-height: initial;
+      overflow: initial;
+      position: absolute;
+      left: 0;
+      top: 6rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, top 0.3s;
+    }
+
+    .dropdown__link,
+    .dropdown__sublink {
+      padding-inline: 1rem 3.5rem;
+    }
+
+    .dropdown__subitem .dropdown__link {
+      padding-inline: 1rem;
+    }
+
+    .dropdown__submenu {
+      position: absolute;
+      left: 100%;
+      top: 0.5rem;
+    }
+
+    /* Show dropdown menu */
+    .dropdown__item:hover .dropdown__menu {
+      opacity: 1;
+      top: 5.5rem;
+      pointer-events: initial;
+      transition: top 0.3s;
+    }
+
+    /* Show dropdown submenu */
+    .dropdown__subitem:hover > .dropdown__submenu {
+      opacity: 1;
+      top: 0;
+      pointer-events: initial;
+      transition: top 0.3s;
+    }
+  }
+</style>
+
+<script>
+  /*=============== SHOW MENU ===============*/
+  const showMenu = (toggleId, navId) => {
+    const toggle = document.getElementById(toggleId),
+      nav = document.getElementById(navId);
+
+    toggle.addEventListener("click", () => {
+      // Add show-menu class to nav menu
+      nav.classList.toggle("show-menu");
+
+      // Add show-icon to show and hide the menu icon
+      toggle.classList.toggle("show-icon");
+    });
+  };
+
+  showMenu("nav-toggle", "nav-menu");
+</script>

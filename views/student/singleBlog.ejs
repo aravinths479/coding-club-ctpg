@@ -1,17 +1,23 @@
 <%- include('partials/studentNavbar') %> <br /><br />
+<%- include('../partials/goBackButton') %>
 
-
-<div class="container mt-5">
-    <div class="row">
-      <div class="col-lg-8 offset-lg-2">
-        <div class="card">
-          <div class="card-body">
-            <h2 class="card-title"><%= blogPost.title %></h2>
-            <hr>
-            <!-- Sanitized HTML content -->
+<div class="container-fluid mt-5">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title"><%= blogPost.title %></h2>
+          <h6>
+            <%= blogPost.createdAt.toLocaleDateString('en-US', { weekday:
+            'long', year: 'numeric', month: 'long', day: 'numeric' }) %>
+          </h6>
+          <hr />
+          <!-- Sanitized HTML content -->
+          <div class="container">
             <div class="card-text"><%- blogPost.sanitizedHtml %></div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
